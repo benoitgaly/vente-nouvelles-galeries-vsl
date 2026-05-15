@@ -780,13 +780,17 @@ header [class*="brand"] { white-space: nowrap; }
 }
 .block p strong { color: var(--ink); font-weight: 600; }
 
-/* Description : drop cap discret + traitement éditorial */
-.desc p:last-child { margin-bottom: 0; }
-.desc p:first-of-type {
+/* Description : drop cap discret + traitement éditorial.
+   `> p:first-of-type` (child combinator) cible UNIQUEMENT le tout premier
+   paragraphe direct de .desc — pas les <p> imbriqués dans les sous-blocs
+   prix (timeline intro, encart offre, etc.) qui ne doivent pas hériter
+   du drop cap. */
+.desc > p:last-child { margin-bottom: 0; }
+.desc > p:first-of-type {
   font-size: 1.08rem;
   line-height: 1.78;
 }
-.desc p:first-of-type::first-letter {
+.desc > p:first-of-type::first-letter {
   font-family: 'Spectral', serif;
   font-size: 3em;
   font-weight: 500;
@@ -1866,6 +1870,7 @@ header [class*="brand"] { white-space: nowrap; }
   background: var(--paper-warm);
   border-left: 3px solid var(--terra);
   border-radius: var(--radius);
+  scroll-margin-top: 90px; /* ne pas se cacher sous la nav fixed quand on suit #prix */
 }
 .prix__lede strong { color: var(--ink); }
 
