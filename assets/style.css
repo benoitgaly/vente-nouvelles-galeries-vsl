@@ -1988,6 +1988,50 @@ header [class*="brand"] { white-space: nowrap; }
   color: var(--ink-soft);
 }
 
+/* Référence du propriétaire — encart graphique mettant en avant le track
+   record du vendeur (magasin équivalent cédé 600 000 € par le même
+   propriétaire). Argument commercial fort, donc bandeau bien marqué :
+   gradient chaud, bordure terracotta épaisse, chiffre clé en serif. */
+.prix-ref {
+  margin: 1.1rem 0 1.3rem;
+  padding: 1.15rem 1.35rem;
+  background: linear-gradient(135deg, var(--paper-warm) 0%, var(--gold-bg) 100%);
+  border-left: 4px solid var(--terra);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  box-shadow: var(--shadow-xs);
+}
+.prix-ref__label {
+  font-family: 'Inter', sans-serif;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--terra-deep);
+}
+.prix-ref__body {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: none;
+}
+.prix-ref .prix-ref__city,
+.prix-ref .prix-ref__amount {
+  font-family: 'Spectral', serif;
+  font-weight: 600;
+}
+.prix-ref .prix-ref__city {
+  color: var(--ink);
+}
+.prix-ref .prix-ref__amount {
+  color: var(--terra-deep);
+  font-size: 1.18rem;
+  letter-spacing: -.005em;
+}
+
 /* Encart -20 % : court, vertical, l'essentiel
    = chiffre + "vente succession" + 1 phrase de condition. */
 .prix-offer {
