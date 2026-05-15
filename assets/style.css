@@ -1853,6 +1853,122 @@ header [class*="brand"] { white-space: nowrap; }
   border-color: var(--bordeaux);
 }
 
+/* ----------------------------- 16b. PRIX -------------------------------- */
+/* Section prix : prose fluide + encart offre conditionnelle.
+   Pas de carte 2 colonnes, pas d'étiquettes "exceptionnelles". */
+
+.prix__lede {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin: 0 0 1.4em;
+  padding: 1rem 1.25rem;
+  background: var(--paper-warm);
+  border-left: 3px solid var(--terra);
+  border-radius: var(--radius);
+}
+.prix__lede strong { color: var(--ink); }
+
+.prix__body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  margin: 0 0 1.2em;
+  max-width: 68ch;
+}
+.prix__body strong { color: var(--ink); font-weight: 600; }
+
+/* Encart offre : panneau bleu nuit avec filet doré, sobre et calme. */
+.prix-offer {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.75rem;
+  align-items: center;
+  margin: 2rem 0 0;
+  padding: 1.65rem 2rem;
+  background:
+    linear-gradient(180deg, #182739 0%, #14202f 100%);
+  color: var(--paper);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(184, 134, 46, .35);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.prix-offer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 0% 50%, rgba(184, 134, 46, .18) 0%, transparent 45%);
+}
+.prix-offer__pill {
+  position: relative;
+  z-index: 1;
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: 'Spectral', serif;
+  font-size: 1.32rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  box-shadow:
+    0 0 0 1px rgba(250, 245, 233, .15),
+    0 8px 18px rgba(0, 0, 0, .35);
+}
+.prix-offer__content {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+.prix-offer__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: .35rem;
+}
+.prix-offer__price {
+  font-family: 'Spectral', serif;
+  font-size: clamp(1.5rem, 2.6vw, 1.85rem);
+  font-weight: 600;
+  color: #f3d68c;
+  letter-spacing: -.005em;
+  line-height: 1.1;
+  margin-bottom: .55rem;
+}
+.prix-offer__terms {
+  margin: 0;
+  font-size: .96rem;
+  line-height: 1.6;
+  color: rgba(250, 245, 233, .85);
+  max-width: 64ch;
+}
+.prix-offer__terms strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .prix-offer {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.4rem 1.4rem;
+  }
+  .prix-offer__pill {
+    width: 64px;
+    height: 64px;
+    font-size: 1.15rem;
+  }
+}
+
 /* ----------------------------- 17. UTILS -------------------------------- */
 .is-hidden { display: none !important; }
 
