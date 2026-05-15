@@ -2096,11 +2096,11 @@ header [class*="brand"] { white-space: nowrap; }
 .prix-offer__question {
   font-family: 'Spectral', serif;
   font-style: italic;
-  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  font-size: clamp(1.25rem, 1.9vw, 1.43rem); /* +4px vs version précédente */
   font-weight: 500;
   color: var(--gold-soft);
   line-height: 1.25;
-  margin-bottom: .65rem;
+  margin-bottom: .7rem;
 }
 .prix-offer__big {
   font-family: 'Spectral', serif;
