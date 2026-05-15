@@ -23,21 +23,22 @@ async function submitContactRequest(payload) {
       user_agent: payload.user_agent || (typeof navigator !== 'undefined' ? navigator.userAgent : null),
       referrer:   payload.referrer   || (typeof document !== 'undefined'  ? document.referrer  : null),
     };
-    const { data, error } = await supabase
+    // NB : pas de .select() après l'insert — le SELECT serait bloqué par
+    // la RLS pour les anonymes (seul l'admin a le droit de lire), même
+    // si l'INSERT lui passe. Cela produirait un 401 trompeur.
+    const { error } = await supabase
       .from('dataroom_contact_requests')
-      .insert(row)
-      .select('id')
-      .maybeSingle();
+      .insert(row);
     if (error) {
       // eslint-disable-next-line no-console
       console.warn('[contact] insert error', error.message || error);
       return false;
     }
-    // log fire-and-forget
+    // log fire-and-forget — pas d'ID disponible côté anonyme, on retrouve
+    // la demande par email côté admin.
     try {
       await logAction('contact_form_submitted', {
         user_email: row.email,
-        metadata: { contact_request_id: data && data.id ? data.id : null },
       });
     } catch (_e) {}
     return true;
