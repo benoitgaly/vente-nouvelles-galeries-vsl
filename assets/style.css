@@ -1861,9 +1861,13 @@ header [class*="brand"] { white-space: nowrap; }
 /* Section #prix : H2 collé à la description (padding-top resserré, pas de
    filet séparateur ::before), grille 2 col avec l'encart offre à droite. */
 
-.block.prix--tight { padding-top: 24px; }
+/* On colle la section Prix à la description : on annule le padding bottom
+   de la description quand elle est suivie d'un .prix--tight, et on réduit
+   le padding top du prix. Pas de filet doré séparateur. */
+.block.desc:has(+ .block.prix--tight) { padding-bottom: 0; }
+.block.prix--tight { padding-top: 18px; }
 .block.prix--tight::before { display: none !important; }
-.block.prix--tight + .block::before { display: none !important; } /* idem pour la suite */
+.block.prix--tight + .block::before { display: none !important; }
 .block.prix h2 {
   margin-bottom: 22px;
   padding-bottom: 14px;
@@ -2024,7 +2028,9 @@ header [class*="brand"] { white-space: nowrap; }
   line-height: 1.55;
   color: rgba(250, 245, 233, .82);
 }
-.prix-offer__terms strong {
+/* Spécificité augmentée pour battre .block p strong (qui mettait les
+   <strong> en var(--ink) = même couleur que le fond bleu nuit). */
+.prix-offer .prix-offer__terms strong {
   color: var(--paper);
   font-weight: 600;
 }
