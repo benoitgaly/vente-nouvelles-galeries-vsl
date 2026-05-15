@@ -4,281 +4,210 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DataRoom — Anciennes Nouvelles Galeries · Villeneuve-sur-Lot</title>
-<meta name="description" content="Espace documentaire protégé : actes notariés, diagnostics, urbanisme, situation locative et fiscalité de l'ensemble immobilier des anciennes Nouvelles Galeries.">
+<meta name="description" content="Espace documentaire protégé : actes notariés, diagnostics, urbanisme, situation locative, fiscalité.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="assets/supabase-ui.css">
 </head>
-<body class="theme-light">
+<body>
 
-<header class="site-nav is-scrolled" id="site-nav">
-  <div class="wrap">
-    <a class="site-nav__brand" href="index.html">
-      Anciennes Nouvelles Galeries
-      <small>Villeneuve-sur-Lot</small>
+<!-- ============================== NAV ================================== -->
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="index.html">
+      JMG IMMOB
+      <small>Villeneuve-sur-Lot · 47</small>
     </a>
-    <nav class="site-nav__menu" aria-label="Navigation principale">
-      <a href="index.html">Accueil</a>
-      <a href="le-bien.html">Le bien</a>
-      <a href="localisation.html">Localisation</a>
-      <a href="urbanisme.html">Urbanisme</a>
-      <a href="investissement.html">Investissement</a>
-      <a href="dataroom.html" class="is-active">DataRoom</a>
-      <a href="index.html#contact" class="site-nav__cta">Demander le dossier</a>
+    <nav class="nav__menu" aria-label="Menu">
+      <a href="index.html#photos">Photos</a>
+      <a href="index.html#description">Description</a>
+      <a href="index.html#caracteristiques">Caractéristiques</a>
+      <a href="dataroom.html">DataRoom</a>
+      <a href="index.html#contact" class="nav__cta">Demander le dossier</a>
     </nav>
-    <button class="site-nav__burger" aria-label="Menu" aria-expanded="false">
+    <button class="nav__burger" aria-label="Ouvrir le menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
-<!-- ============================== GATE =================================== -->
-<section class="dataroom-gate" id="dataroom-gate">
-  <div class="gate-card">
+<!-- ============================== GATE ================================= -->
+<section class="gate" id="dataroom-gate">
+  <div class="gate__card">
     <span class="eyebrow">Espace confidentiel</span>
     <h1>DataRoom</h1>
-    <p>Accès réservé aux acquéreurs identifiés et à leurs conseils, après validation de leur demande par le mandataire. Renseignez votre email professionnel — un lien d'accès sécurisé vous sera envoyé.</p>
+    <p>Accès réservé aux acquéreurs identifiés et à leurs conseils, après validation par le mandataire. Renseignez votre email professionnel — un lien d'accès sécurisé vous sera envoyé.</p>
     <form id="dataroom-gate-form" novalidate>
-      <div class="form-field">
+      <div class="field">
         <label for="dr-email">Email professionnel</label>
-        <input id="dr-email" name="email" type="email" required autocomplete="email" spellcheck="false" autofocus>
+        <input id="dr-email" name="email" type="email" required autocomplete="email" spellcheck="false">
       </div>
       <div class="form-actions">
-        <button type="submit" class="btn btn--gold" id="dr-gate-submit">
+        <button type="submit" class="btn" id="dr-gate-submit">
           Recevoir le lien d'accès
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </button>
       </div>
       <div class="gate-msg" id="dr-gate-msg" hidden></div>
     </form>
-    <p class="gate-help">Vous n'avez pas encore fait votre demande&nbsp;? <a href="index.html#contact">Demander le dossier via le formulaire</a>. Votre accès sera ouvert après validation du mandataire (sous 24h ouvrées).</p>
+    <p class="gate__help">Vous n'avez pas encore fait votre demande ? <a href="index.html#contact">Demandez le dossier depuis la page d'accueil</a>. Votre accès sera ouvert sous 24 h ouvrées.</p>
   </div>
 </section>
 
-<!-- ============================ CONTENT ================================= -->
-<main class="dataroom-content" id="dataroom-content">
+<!-- ============================== CONTENU ============================== -->
+<main class="dr-page is-hidden" id="dataroom-content">
   <div class="wrap">
 
-    <header class="dataroom-intro" data-reveal>
-      <span class="eyebrow">Espace documentaire confidentiel</span>
-      <h1>DataRoom — pièces du dossier</h1>
-      <hr class="divider">
-      <p class="lead">Les documents ci-dessous sont communiqués sous engagement de confidentialité. Toute consultation et tout téléchargement sont journalisés. Pour toute question ou demande de pièce complémentaire, contactez le mandataire via le <a href="index.html#contact" style="color: var(--gold); border-bottom: 1px solid var(--gold-pale);">formulaire de contact</a>.</p>
+    <header>
+      <span class="eyebrow">Espace documentaire</span>
+      <h1>Pièces du dossier</h1>
+      <p class="muted" style="max-width:760px;">Les documents ci-dessous sont communiqués sous engagement de confidentialité. Toute consultation et tout téléchargement sont journalisés. Pour toute question, contactez le mandataire via le <a href="index.html#contact">formulaire de contact</a>.</p>
     </header>
 
-    <!-- Bandeau session -->
-    <div class="dr-session" id="dr-session">
+    <div class="dr-session">
       <div class="dr-session__who">
         <span class="dr-session__label">Session ouverte</span>
         <span class="dr-session__email" id="dr-session-email">—</span>
       </div>
-      <div class="dr-session__actions">
-        <button type="button" class="btn--ghost" id="dr-logout">Se déconnecter</button>
-      </div>
+      <button type="button" class="btn--ghost" id="dr-logout" style="padding:7px 14px; font-size:.85rem;">Se déconnecter</button>
     </div>
 
     <!-- 01 Mémorandum -->
-    <section class="dataroom-cat" data-reveal>
-      <h3>Mémorandum complet <small>01 — Dossier de présentation</small></h3>
+    <section class="dr-cat">
+      <h3>Mémorandum <small>01 — Dossier de présentation</small></h3>
       <div class="dr-list">
         <a class="dr-item dr-doc" href="assets/dataroom/01_Memorandum.pdf" target="_blank" rel="noopener" data-doc-label="Mémorandum d'investissement">
           <span class="dr-item__icon">PDF</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Mémorandum d'investissement</span>
-            <span class="dr-item__meta">Vue d'ensemble du bien, du contexte et de l'opération</span>
-          </span>
+          <span><span class="dr-item__title">Mémorandum d'investissement</span><span class="dr-item__meta">Vue d'ensemble du bien, du contexte et de l'opération</span></span>
+        </a>
+        <a class="dr-item dr-doc" href="assets/dataroom/01_Dossier_de_presentation.pdf" target="_blank" rel="noopener" data-doc-label="Dossier de présentation">
+          <span class="dr-item__icon">PDF</span>
+          <span><span class="dr-item__title">Dossier de présentation</span><span class="dr-item__meta">Synthèse commerciale</span></span>
         </a>
       </div>
     </section>
 
-    <!-- 02 Identification -->
-    <section class="dataroom-cat" data-reveal>
-      <h3>Identification du bien <small>02 — Cadastre</small></h3>
+    <!-- 02 Cadastre -->
+    <section class="dr-cat">
+      <h3>Identification &amp; cadastre <small>02</small></h3>
       <div class="dr-list">
         <a class="dr-item dr-doc" href="assets/dataroom/02_Cadastre.pdf" target="_blank" rel="noopener" data-doc-label="Extrait cadastral">
           <span class="dr-item__icon">PDF</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Extrait cadastral</span>
-            <span class="dr-item__meta">Édition officielle — 4 parcelles EV 8 / 9 / 20 / 21</span>
-          </span>
+          <span><span class="dr-item__title">Extrait cadastral</span><span class="dr-item__meta">Parcelles EV 8 · 9 · 20 · 21</span></span>
         </a>
         <a class="dr-item dr-doc" href="assets/dataroom/02_Plans_cadastraux.pdf" target="_blank" rel="noopener" data-doc-label="Plans cadastraux">
           <span class="dr-item__icon">PDF</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Plans cadastraux</span>
-            <span class="dr-item__meta">Plans techniques — 1 099 m² de foncier</span>
-          </span>
+          <span><span class="dr-item__title">Plans cadastraux</span><span class="dr-item__meta">Plans détaillés des 4 parcelles</span></span>
         </a>
       </div>
     </section>
 
     <!-- 03 Titres -->
-    <section class="dataroom-cat" data-reveal>
+    <section class="dr-cat">
       <h3>Titres de propriété <small>03 — Actes notariés</small></h3>
       <div class="dr-list">
-        <a class="dr-item dr-doc" href="assets/dataroom/03_Acte_2018_8bis-8ter_Cours_Victor_Hugo.pdf" target="_blank" rel="noopener" data-doc-label="Acte 28/12/2018 — 8 bis/8 ter + rue Bernard Palissy">
+        <a class="dr-item dr-doc" href="assets/dataroom/03_Acte_2018_8bis-8ter_Cours_Victor_Hugo.pdf" target="_blank" rel="noopener" data-doc-label="Acte 2018 — 8 bis/ter Cours Victor Hugo">
           <span class="dr-item__icon">PDF</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Acte du 28/12/2018 — 8 bis & 8 ter + rue Bernard Palissy</span>
-            <span class="dr-item__meta">Premier acte d'acquisition par JMG IMMOB</span>
-          </span>
+          <span><span class="dr-item__title">Acte 28/12/2018 — 8 bis &amp; 8 ter Cours Victor Hugo</span><span class="dr-item__meta">Lots 1-2-3 EV 8 + parcelle Bernard Palissy</span></span>
         </a>
-        <a class="dr-item dr-doc" href="assets/dataroom/03_Acte_2021_10_Cours_Victor_Hugo.pdf" target="_blank" rel="noopener" data-doc-label="Acte 23/11/2021 — 10 Cours Victor Hugo">
+        <a class="dr-item dr-doc" href="assets/dataroom/03_Acte_2021_10_Cours_Victor_Hugo.pdf" target="_blank" rel="noopener" data-doc-label="Acte 2021 — 10 Cours Victor Hugo">
           <span class="dr-item__icon">PDF</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Acte du 23/11/2021 — 10 Cours Victor Hugo</span>
-            <span class="dr-item__meta">Acquisition de la parcelle EV 9</span>
-          </span>
+          <span><span class="dr-item__title">Acte 23/11/2021 — 10 Cours Victor Hugo</span><span class="dr-item__meta">Immeuble annexe (EV 9)</span></span>
         </a>
-        <a class="dr-item dr-doc" href="assets/dataroom/03_Acte_2024_T2_Cours_Victor_Hugo.pdf" target="_blank" rel="noopener" data-doc-label="Acte 19/06/2024 — T2 lots 5 & 6">
+        <a class="dr-item dr-doc" href="assets/dataroom/03_Acte_2024_T2_Cours_Victor_Hugo.pdf" target="_blank" rel="noopener" data-doc-label="Acte 2024 — T2 (lots 5/6)">
           <span class="dr-item__icon">PDF</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Acte du 19/06/2024 — T2 lots 5 & 6</span>
-            <span class="dr-item__meta">Extinction de la copropriété — réunion en une seule main</span>
-          </span>
+          <span><span class="dr-item__title">Acte 19/06/2024 — Appartement T2 (lots 5/6)</span><span class="dr-item__meta">Réunion de la copropriété en une seule main</span></span>
         </a>
       </div>
     </section>
 
     <!-- 04 Diagnostics -->
-    <section class="dataroom-cat" data-reveal>
-      <h3>Diagnostics techniques <small>04 — Trois jeux</small></h3>
+    <section class="dr-cat">
+      <h3>Diagnostics techniques <small>04</small></h3>
       <div class="dr-list">
-        <a class="dr-item dr-doc" href="assets/dataroom/04_Diagnostics_2018.pdf" target="_blank" rel="noopener" data-doc-label="Diagnostics 2018 — ensemble 8 bis/8 ter">
+        <a class="dr-item dr-doc" href="assets/dataroom/04_Diagnostics_2018.pdf" target="_blank" rel="noopener" data-doc-label="Diagnostics 2018">
           <span class="dr-item__icon">PDF</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Diagnostics 28/12/2018 — ensemble 8 bis / 8 ter</span>
-            <span class="dr-item__meta">Amiante (présence, évaluation périodique), plomb, électricité, gaz, termites, ERP</span>
-          </span>
+          <span><span class="dr-item__title">Diagnostics 2018 — 8 bis/ter</span><span class="dr-item__meta">Amiante, électricité, plomb, termites, ERP</span></span>
         </a>
-        <a class="dr-item dr-doc" href="assets/dataroom/04_Diagnostics_2023_10_Cours_Victor_Hugo.pdf" target="_blank" rel="noopener" data-doc-label="Diagnostics 2023 — 10 Cours Victor Hugo">
+        <a class="dr-item dr-doc" href="assets/dataroom/04_Diagnostics_2023_10_Cours_Victor_Hugo.pdf" target="_blank" rel="noopener" data-doc-label="Diagnostics 2023 — 10 Cours">
           <span class="dr-item__icon">PDF</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Diagnostics 23/11/2023 — 10 Cours Victor Hugo</span>
-            <span class="dr-item__meta">Jeu complet pour l'immeuble annexe EV 9</span>
-          </span>
+          <span><span class="dr-item__title">Diagnostics 2023 — 10 Cours Victor Hugo</span><span class="dr-item__meta">Mise à jour DDT immeuble annexe</span></span>
         </a>
-        <a class="dr-item dr-doc" href="assets/dataroom/04_Diagnostics_2024_T2.pdf" target="_blank" rel="noopener" data-doc-label="Diagnostics 2024 — appartement T2">
+        <a class="dr-item dr-doc" href="assets/dataroom/04_Diagnostics_2024_T2.pdf" target="_blank" rel="noopener" data-doc-label="Diagnostics 2024 — T2">
           <span class="dr-item__icon">PDF</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Diagnostics 19/06/2024 — appartement T2 (lots 5/6)</span>
-            <span class="dr-item__meta">DPE classé E · pas d'amiante détecté · ERP</span>
-          </span>
+          <span><span class="dr-item__title">Diagnostics 2024 — Appartement T2</span><span class="dr-item__meta">DPE classe E · 275 kWh/m²/an</span></span>
         </a>
       </div>
     </section>
 
     <!-- 06 Locatif -->
-    <section class="dataroom-cat" data-reveal>
-      <h3>Situation locative <small>06 — Bail commercial expiré</small></h3>
+    <section class="dr-cat">
+      <h3>Situation locative <small>06</small></h3>
       <div class="dr-list">
-        <a class="dr-item dr-doc" href="assets/dataroom/06_Bail_derogatoire_RDC.pdf" target="_blank" rel="noopener" data-doc-label="Bail dérogatoire RDC 8 ter — 2019">
+        <a class="dr-item dr-doc" href="assets/dataroom/06_Bail_derogatoire_RDC.pdf" target="_blank" rel="noopener" data-doc-label="Bail dérogatoire RDC">
           <span class="dr-item__icon">PDF</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Bail dérogatoire RDC 8 ter — 2019 (expiré)</span>
-            <span class="dr-item__meta">Bail commercial du 01/01/2019 au 31/12/2019 — local commercial du rez-de-chaussée</span>
-          </span>
+          <span><span class="dr-item__title">Bail dérogatoire RDC (textile, 2019)</span><span class="dr-item__meta">Historique — local actuellement libre</span></span>
         </a>
       </div>
-      <p class="muted" style="margin-top: 18px; font-size: 0.88rem;">Le bail d'habitation en cours sur l'appartement T2 (loué 368,59 € / mois CC, gestion FONCIA Montauban) sera communiqué sur demande sécurisée — il contient des données personnelles du locataire.</p>
     </section>
 
     <!-- 08 Mandat -->
-    <section class="dataroom-cat" data-reveal>
-      <h3>Mandat &amp; pouvoirs du signataire <small>08 — Mandat de vente d'intérêt commun</small></h3>
+    <section class="dr-cat">
+      <h3>Pouvoirs du signataire <small>08</small></h3>
       <div class="dr-list">
-        <a class="dr-item dr-doc" href="assets/dataroom/08_Mandat_vente_interet_commun.docx" target="_blank" rel="noopener" data-doc-label="Mandat de vente d'intérêt commun (.docx)">
-          <span class="dr-item__icon">DOC</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Mandat de vente d'intérêt commun</span>
-            <span class="dr-item__meta">Signé le 03/05/2026 — pleins pouvoirs de cession pour JMG IMMOB</span>
-          </span>
+        <a class="dr-item dr-doc" href="assets/dataroom/08_Mandat_vente_interet_commun.docx" target="_blank" rel="noopener" data-doc-label="Mandat de vente d'intérêt commun">
+          <span class="dr-item__icon">DOCX</span>
+          <span><span class="dr-item__title">Mandat de vente d'intérêt commun</span><span class="dr-item__meta">Signé 03/05/2026 — pleins pouvoirs de cession</span></span>
         </a>
       </div>
     </section>
 
     <!-- 09 Fiscalité -->
-    <section class="dataroom-cat" data-reveal>
-      <h3>Fiscalité <small>09 — Taxe foncière</small></h3>
+    <section class="dr-cat">
+      <h3>Fiscalité <small>09</small></h3>
       <div class="dr-list">
-        <a class="dr-item dr-doc" href="assets/dataroom/09_Avis_taxe_fonciere_2024.pdf" target="_blank" rel="noopener" data-doc-label="Avis de taxe foncière 2024">
+        <a class="dr-item dr-doc" href="assets/dataroom/09_Avis_taxe_fonciere_2024.pdf" target="_blank" rel="noopener" data-doc-label="Avis taxe foncière 2024">
           <span class="dr-item__icon">PDF</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Avis de taxe foncière 2024 — rôle 22101</span>
-            <span class="dr-item__meta">17 386 € pour EV 8 + 20 + 21 (≈ 18 700 € avec rôle 28301)</span>
-          </span>
+          <span><span class="dr-item__title">Avis de taxe foncière 2024</span><span class="dr-item__meta">≈ 18 700 €</span></span>
         </a>
-        <a class="dr-item dr-doc" href="assets/dataroom/09_Taxe_fonciere_2017.pdf" target="_blank" rel="noopener" data-doc-label="Avis de taxe foncière 2017">
+        <a class="dr-item dr-doc" href="assets/dataroom/09_Taxe_fonciere_2017.pdf" target="_blank" rel="noopener" data-doc-label="Taxe foncière 2017">
           <span class="dr-item__icon">PDF</span>
-          <span class="dr-item__body">
-            <span class="dr-item__title">Avis de taxe foncière 2017</span>
-            <span class="dr-item__meta">Historique — Cours Victor Hugo & rue Bernard Palissy</span>
-          </span>
+          <span><span class="dr-item__title">Taxe foncière 2017</span><span class="dr-item__meta">Historique</span></span>
         </a>
       </div>
     </section>
 
-    <!-- Urbanisme info -->
-    <section class="dataroom-cat" data-reveal>
-      <h3>Urbanisme <small>05 — En cours d'obtention</small></h3>
-      <p class="muted" style="font-size: 0.92rem; line-height: 1.7;">La Note de Renseignements d'Urbanisme officielle pour les 4 parcelles est en cours de demande auprès des services de la commune. Elle confirmera le sous-zonage UAa/UAb, le périmètre SPR, les éventuelles servitudes et la qualification PPRi précise. Le document sera ajouté ici dès réception.</p>
-      <p class="muted" style="font-size: 0.92rem; line-height: 1.7; margin-top: 10px;">Une synthèse des dispositions du PLUih applicables à la zone est présentée dans la page <a href="urbanisme.html" style="color: var(--gold);">Urbanisme</a>.</p>
-    </section>
-
-    <!-- Logs récents -->
-    <section class="dr-logs" data-reveal>
-      <h3>Vos accès récents</h3>
-      <p class="muted" style="margin-bottom: 18px; font-size: 0.88rem;">Toutes vos actions sur cette DataRoom sont journalisées (consultations, téléchargements). Voici vos derniers accès.</p>
-      <div id="dr-logs-wrap">
-        <p class="muted" style="font-size: 0.88rem;">Chargement…</p>
-      </div>
-    </section>
-
-    <!-- Footer DR -->
-    <section style="padding-top: 40px; border-top: 1px solid var(--line); margin-top: 40px;">
-      <p class="muted text-center" style="font-size: 0.88rem;">DataRoom protégée — confidentialité requise. Pour toute demande de pièce complémentaire ou de visite sur place, <a href="index.html#contact" style="color: var(--gold);">utilisez le formulaire de contact</a>.</p>
+    <!-- Activité -->
+    <section class="dr-cat" style="margin-top:42px;">
+      <h3>Activité récente sur la DataRoom <small>vos 25 dernières actions</small></h3>
+      <div id="dr-logs-wrap"><p class="muted" style="font-size:.88rem;">Chargement…</p></div>
     </section>
 
   </div>
 </main>
 
-<footer class="site-foot">
-  <div class="wrap">
-    <div class="site-foot__grid">
-      <div>
-        <div class="site-foot__brand">Anciennes Nouvelles Galeries</div>
-        <p style="max-width: 42ch; line-height: 1.7;">Ensemble immobilier mixte à réhabiliter, 8 bis / 8 ter / 10 Cours Victor Hugo et rue Bernard Palissy, 47300 Villeneuve-sur-Lot. Propriété de la SARL JMG IMMOB.</p>
-      </div>
-      <div>
-        <h4>Le dossier</h4>
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="le-bien.html">Le bien</a></li>
-          <li><a href="localisation.html">Localisation</a></li>
-          <li><a href="urbanisme.html">Urbanisme</a></li>
-          <li><a href="investissement.html">Investissement</a></li>
-          <li><a href="dataroom.html">DataRoom</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="index.html#contact">Formulaire</a></li>
-          <li>SARL JMG IMMOB</li>
-          <li>SIREN 844 912 964 — RCS Agen</li>
-        </ul>
-      </div>
-    </div>
-    <div class="site-foot__bottom">
-      <span>© <span id="current-year">2026</span> SARL JMG IMMOB — Tous droits réservés.</span>
-      <span>Mandat de vente d'intérêt commun · Vente directe entre principaux</span>
-    </div>
+<!-- ============================== FOOTER =============================== -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div>© <span id="footer-year">2026</span> SARL JMG IMMOB · SIREN 844 912 964</div>
+    <div><a href="index.html">Retour à l'annonce</a> · <a href="index.html#contact">Contact</a></div>
   </div>
 </footer>
 
-<script src="assets/main.js" defer></script>
+<style>
+  /* petits ajustements spécifiques à la dataroom */
+  .dr-page.is-hidden { display: none; }
+  .gate.is-hidden    { display: none; }
+  .is-open           { display: block; }
+</style>
+
+<!-- ============================== SCRIPTS ============================== -->
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  // mobile burger
+  const burger = document.querySelector('.nav__burger');
+  const menu = document.querySelector('.nav__menu');
+  if (burger && menu) burger.addEventListener('click', () => menu.classList.toggle('is-open'));
+</script>
 <script type="module" src="assets/dataroom-auth.js"></script>
 </body>
 </html>

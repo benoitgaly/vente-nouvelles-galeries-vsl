@@ -3,47 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Back-office — Anciennes Nouvelles Galeries · Villeneuve-sur-Lot</title>
+<title>Back-office mandataire — JMG IMMOB</title>
 <meta name="robots" content="noindex, nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="assets/supabase-ui.css">
 </head>
-<body class="theme-light">
+<body>
 
-<header class="site-nav is-scrolled" id="site-nav">
-  <div class="wrap">
-    <a class="site-nav__brand" href="index.html">
-      Anciennes Nouvelles Galeries
-      <small>Villeneuve-sur-Lot</small>
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="index.html">
+      JMG IMMOB
+      <small>Back-office mandataire</small>
     </a>
-    <nav class="site-nav__menu" aria-label="Navigation principale">
-      <a href="index.html">Accueil</a>
+    <nav class="nav__menu" aria-label="Menu">
+      <a href="index.html">Annonce</a>
       <a href="dataroom.html">DataRoom</a>
-      <a href="admin.html" class="is-active">Back-office</a>
     </nav>
-    <button class="site-nav__burger" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </header>
 
-<!-- ============================ LOGIN ==================================== -->
-<section class="admin-login" id="admin-login">
-  <div class="gate-card">
-    <span class="eyebrow">Back-office</span>
-    <h1>Accès mandataire</h1>
-    <p>Espace réservé au mandataire de la SARL JMG IMMOB. Renseignez votre email — un lien de connexion vous sera envoyé.</p>
+<!-- ============================== LOGIN ================================ -->
+<section class="gate" id="admin-login">
+  <div class="gate__card">
+    <span class="eyebrow">Accès restreint</span>
+    <h1>Back-office mandataire</h1>
+    <p>Connexion réservée à l'email administrateur. Un lien de connexion sécurisé sera envoyé par email.</p>
     <form id="admin-login-form" novalidate>
-      <div class="form-field">
-        <label for="adm-email">Email</label>
-        <input id="adm-email" name="email" type="email" required autocomplete="email" spellcheck="false" autofocus>
+      <div class="field">
+        <label for="adm-email">Email administrateur</label>
+        <input id="adm-email" name="email" type="email" required autocomplete="email" spellcheck="false">
       </div>
       <div class="form-actions">
-        <button type="submit" class="btn btn--gold" id="adm-submit">
+        <button type="submit" class="btn" id="adm-submit">
           Recevoir le lien
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </button>
       </div>
       <div class="gate-msg" id="adm-msg" hidden></div>
@@ -51,60 +44,60 @@
   </div>
 </section>
 
-<!-- ============================ SHELL ==================================== -->
-<main class="admin-shell" id="admin-shell" style="display:none;">
-  <div class="wrap">
+<!-- ============================== SHELL ================================ -->
+<main class="admin-shell wrap" id="admin-shell" style="display:none;">
 
-    <header class="admin-head">
-      <div>
-        <span class="eyebrow">Back-office mandataire</span>
-        <h1>Suivi des demandes &amp; accès DataRoom</h1>
-      </div>
-      <div class="dr-session__actions">
-        <button type="button" class="btn--ghost" id="adm-logout">Se déconnecter</button>
-      </div>
-    </header>
-
-    <!-- Demandes -->
-    <section class="admin-section" id="sec-requests">
-      <header>
-        <h2>Demandes entrantes</h2>
-        <span class="admin-count" id="cnt-requests">—</span>
-      </header>
-      <div id="tbl-requests-wrap">
-        <p class="muted">Chargement…</p>
-      </div>
-    </section>
-
-    <!-- Utilisateurs -->
-    <section class="admin-section" id="sec-users">
-      <header>
-        <h2>Utilisateurs DataRoom</h2>
-        <span class="admin-count" id="cnt-users">—</span>
-      </header>
-      <div id="tbl-users-wrap">
-        <p class="muted">Chargement…</p>
-      </div>
-    </section>
-
-    <!-- Logs -->
-    <section class="admin-section" id="sec-logs">
-      <header>
-        <h2>Logs d'accès récents</h2>
-        <span class="admin-count" id="cnt-logs">—</span>
-      </header>
-      <div id="tbl-logs-wrap">
-        <p class="muted">Chargement…</p>
-      </div>
-    </section>
-
+  <div style="display:flex; justify-content:space-between; align-items:center; gap:18px; flex-wrap:wrap; margin-bottom:18px;">
+    <div>
+      <span class="eyebrow">Mandataire</span>
+      <h1 style="margin:0;">Back-office</h1>
+    </div>
+    <button class="btn--ghost" id="adm-logout" style="padding:7px 14px;">Se déconnecter</button>
   </div>
+
+  <nav class="admin-tabs" role="tablist">
+    <button class="admin-tab is-active" data-tab="requests" role="tab">
+      Demandes <span class="cnt" id="cnt-requests">—</span>
+    </button>
+    <button class="admin-tab" data-tab="users" role="tab">
+      Utilisateurs <span class="cnt" id="cnt-users">—</span>
+    </button>
+    <button class="admin-tab" data-tab="logs" role="tab">
+      Journal d'accès <span class="cnt" id="cnt-logs">—</span>
+    </button>
+  </nav>
+
+  <section class="admin-pane is-active" id="pane-requests">
+    <div id="tbl-requests-wrap"><p class="muted">Chargement…</p></div>
+  </section>
+  <section class="admin-pane" id="pane-users">
+    <div id="tbl-users-wrap"><p class="muted">Chargement…</p></div>
+  </section>
+  <section class="admin-pane" id="pane-logs">
+    <div id="tbl-logs-wrap"><p class="muted">Chargement…</p></div>
+  </section>
 </main>
 
-<!-- Toast -->
-<div id="admin-toast" class="admin-message" style="display:none;"></div>
+<div class="toast" id="admin-toast"></div>
 
-<script src="assets/main.js" defer></script>
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div>© <span id="footer-year">2026</span> SARL JMG IMMOB · Back-office privé</div>
+    <div><a href="index.html">Retour annonce</a></div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  // tabs
+  document.querySelectorAll('.admin-tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const id = tab.getAttribute('data-tab');
+      document.querySelectorAll('.admin-tab').forEach((t) => t.classList.toggle('is-active', t === tab));
+      document.querySelectorAll('.admin-pane').forEach((p) => p.classList.toggle('is-active', p.id === 'pane-' + id));
+    });
+  });
+</script>
 <script type="module" src="assets/admin.js"></script>
 </body>
 </html>

@@ -1,286 +1,252 @@
 /* ==========================================================================
-   Nouvelles Galeries — Villeneuve-sur-Lot
-   Comportements JS : nav, carrousel, formulaire mailto obfusqué, dataroom
+   JMG IMMOB — Anciennes Nouvelles Galeries
+   main.js : carrousel, lightbox, formulaire contact (Supabase)
    ========================================================================== */
+
 (function () {
   'use strict';
 
-  /* ----------------------- 1. NAV : scroll + burger ----------------------- */
-  const nav = document.querySelector('.site-nav');
-  if (nav) {
-    const onScroll = () => {
-      if (window.scrollY > 50) nav.classList.add('is-scrolled');
-      else nav.classList.remove('is-scrolled');
+  const $  = (sel, root) => (root || document).querySelector(sel);
+  const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
+
+  /* ---------------------- 1. NAV mobile ----------------------------- */
+  const burger = $('.nav__burger');
+  const menu   = $('.nav__menu');
+  if (burger && menu) {
+    burger.addEventListener('click', () => {
+      const open = menu.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* ---------------------- 2. LIGHTBOX (init avant carrousel) -------- */
+  const lightbox = $('#lightbox');
+  let openLightbox = () => {}; // no-op par défaut
+  let lbSources = [];
+
+  if (lightbox) {
+    const lbImg     = $('.lightbox__img', lightbox);
+    const lbCounter = $('.lightbox__counter', lightbox);
+    const lbCaption = $('.lightbox__caption', lightbox);
+    const lbPrev    = $('.lightbox__btn--prev', lightbox);
+    const lbNext    = $('.lightbox__btn--next', lightbox);
+    const lbClose   = $('.lightbox__close', lightbox);
+    let lbIdx = 0;
+
+    function showLb(i) {
+      if (!lbSources.length) return;
+      lbIdx = ((i % lbSources.length) + lbSources.length) % lbSources.length;
+      const item = lbSources[lbIdx];
+      lbImg.src = item.src;
+      lbImg.alt = item.alt;
+      if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbSources.length;
+      if (lbCaption) lbCaption.textContent = item.alt;
+    }
+
+    openLightbox = function (i) {
+      showLb(i || 0);
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
 
-    const burger = nav.querySelector('.site-nav__burger');
-    if (burger) {
-      burger.addEventListener('click', () => nav.classList.toggle('is-open'));
-      nav.querySelectorAll('.site-nav__menu a').forEach((a) => {
-        a.addEventListener('click', () => nav.classList.remove('is-open'));
-      });
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
     }
+
+    if (lbPrev)  lbPrev.addEventListener('click', () => showLb(lbIdx - 1));
+    if (lbNext)  lbNext.addEventListener('click', () => showLb(lbIdx + 1));
+    if (lbClose) lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape')      closeLightbox();
+      else if (e.key === 'ArrowRight') showLb(lbIdx + 1);
+      else if (e.key === 'ArrowLeft')  showLb(lbIdx - 1);
+    });
+
+    // swipe tactile
+    let lbTouch = null;
+    lightbox.addEventListener('touchstart', (e) => { lbTouch = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend',   (e) => {
+      if (lbTouch == null) return;
+      const dx = e.changedTouches[0].clientX - lbTouch;
+      if (Math.abs(dx) > 40) showLb(lbIdx + (dx < 0 ? 1 : -1));
+      lbTouch = null;
+    });
   }
 
-  /* ----------------------- 2. CARROUSEL HERO ------------------------------ */
-  const hero = document.querySelector('[data-carousel]');
-  if (hero) {
-    const slides = Array.from(hero.querySelectorAll('.hero__slide'));
-    const dotsWrap = hero.querySelector('.hero__dots');
-    const captionEl = hero.querySelector('.hero__caption');
+  /* ---------------------- 3. CARROUSEL ------------------------------ */
+  const carousel = $('.carousel');
+  if (carousel) {
+    const track     = $('.carousel__track', carousel);
+    const slides    = $$('.carousel__slide', carousel);
+    const prevBtn   = $('.carousel__btn--prev', carousel);
+    const nextBtn   = $('.carousel__btn--next', carousel);
+    const dotsWrap  = $('.carousel__dots', carousel);
+    const counter   = $('.carousel__counter', carousel);
+    const expandBtn = $('.carousel__expand', carousel);
+    const total = slides.length;
     let idx = 0;
-    let timer = null;
-    const INTERVAL = 6000;
 
-    // Build dots
-    const dots = slides.map((_, i) => {
-      const b = document.createElement('button');
-      b.className = 'hero__dot' + (i === 0 ? ' is-active' : '');
-      b.setAttribute('aria-label', `Aller au slide ${i + 1}`);
-      b.addEventListener('click', () => go(i, true));
-      dotsWrap.appendChild(b);
-      return b;
+    // collecte des sources pour la lightbox
+    lbSources = slides.map((s) => {
+      const img = s.querySelector('img');
+      return {
+        src: img ? (img.getAttribute('data-full') || img.getAttribute('src')) : '',
+        alt: img ? (img.getAttribute('alt') || '') : '',
+      };
     });
 
-    function setCaption(i) {
-      if (!captionEl) return;
-      const c = slides[i].getAttribute('data-caption') || '';
-      if (c) {
-        captionEl.textContent = c;
-        captionEl.classList.add('is-visible');
-      } else {
-        captionEl.classList.remove('is-visible');
-      }
+    // dots
+    if (dotsWrap) {
+      dotsWrap.innerHTML = '';
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'carousel__dot' + (i === 0 ? ' is-active' : '');
+        b.setAttribute('aria-label', 'Photo ' + (i + 1));
+        b.addEventListener('click', () => go(i));
+        dotsWrap.appendChild(b);
+      });
+    }
+    const dots = $$('.carousel__dot', carousel);
+
+    function update() {
+      track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+      if (counter) counter.textContent = (idx + 1) + ' / ' + total;
+    }
+    function go(i) {
+      idx = ((i % total) + total) % total;
+      update();
+    }
+    function nextSlide() { go(idx + 1); }
+    function prevSlide() { go(idx - 1); }
+
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+    // clavier (ignoré quand lightbox ouverte)
+    document.addEventListener('keydown', (e) => {
+      if (lightbox && lightbox.classList.contains('is-open')) return;
+      // évite de capter les flèches dans les champs de formulaire
+      const tag = (e.target && e.target.tagName) || '';
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) return;
+      if (e.key === 'ArrowRight')      nextSlide();
+      else if (e.key === 'ArrowLeft')  prevSlide();
+    });
+
+    // swipe
+    let touchStart = null;
+    track.addEventListener('touchstart', (e) => { touchStart = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend',   (e) => {
+      if (touchStart == null) return;
+      const dx = e.changedTouches[0].clientX - touchStart;
+      if (Math.abs(dx) > 40) (dx < 0 ? nextSlide : prevSlide)();
+      touchStart = null;
+    });
+
+    // clic image -> lightbox
+    slides.forEach((slide, i) => {
+      const img = slide.querySelector('img');
+      if (!img) return;
+      img.addEventListener('click', () => openLightbox(i));
+    });
+    if (expandBtn) expandBtn.addEventListener('click', () => openLightbox(idx));
+
+    update();
+  }
+
+  /* ---------------------- 4. FORMULAIRE CONTACT --------------------- */
+  const form = $('#contact-form');
+  if (form) {
+    const msgEl     = $('#contact-msg');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    function showMsg(text, type) {
+      if (!msgEl) return;
+      msgEl.textContent = text;
+      msgEl.hidden = false;
+      msgEl.classList.toggle('is-error', type === 'error');
+    }
+    function clearMsg() {
+      if (!msgEl) return;
+      msgEl.hidden = true;
+      msgEl.textContent = '';
+      msgEl.classList.remove('is-error');
     }
 
-    function go(n, fromUser) {
-      slides[idx].classList.remove('is-active');
-      dots[idx].classList.remove('is-active');
-      idx = (n + slides.length) % slides.length;
-      slides[idx].classList.add('is-active');
-      dots[idx].classList.add('is-active');
-      setCaption(idx);
-      if (fromUser) restart();
-    }
-
-    function next() { go(idx + 1); }
-    function prev() { go(idx - 1, true); }
-    function start() { timer = setInterval(next, INTERVAL); }
-    function stop() { if (timer) clearInterval(timer); timer = null; }
-    function restart() { stop(); start(); }
-
-    const btnPrev = hero.querySelector('.hero__nav--prev');
-    const btnNext = hero.querySelector('.hero__nav--next');
-    if (btnPrev) btnPrev.addEventListener('click', prev);
-    if (btnNext) btnNext.addEventListener('click', () => go(idx + 1, true));
-
-    // Pause on hover
-    hero.addEventListener('mouseenter', stop);
-    hero.addEventListener('mouseleave', start);
-
-    // Touch swipe
-    let touchX = null;
-    hero.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
-    hero.addEventListener('touchend', (e) => {
-      if (touchX === null) return;
-      const dx = e.changedTouches[0].clientX - touchX;
-      if (Math.abs(dx) > 40) (dx < 0 ? next : prev)();
-      touchX = null;
-    });
-
-    setCaption(0);
-    start();
-  }
-
-  /* ----------------------- 3. REVEAL ON SCROLL ---------------------------- */
-  const reveals = document.querySelectorAll('[data-reveal]');
-  if (reveals.length && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-visible');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach((el) => io.observe(el));
-  } else {
-    reveals.forEach((el) => el.classList.add('is-visible'));
-  }
-
-  /* ----------------------- 4. LIGHTBOX GALERIE --------------------------- */
-  const galleryImgs = document.querySelectorAll('.gallery__item img');
-  if (galleryImgs.length) {
-    const lb = document.createElement('div');
-    lb.className = 'lightbox';
-    lb.innerHTML = '<button class="lightbox__close" aria-label="Fermer">×</button><img alt="">';
-    document.body.appendChild(lb);
-    const lbImg = lb.querySelector('img');
-    const close = () => lb.classList.remove('is-open');
-    lb.addEventListener('click', close);
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
-
-    galleryImgs.forEach((img) => {
-      img.parentElement.addEventListener('click', (e) => {
-        e.preventDefault();
-        lbImg.src = img.currentSrc || img.src;
-        lbImg.alt = img.alt || '';
-        lb.classList.add('is-open');
-      });
-    });
-  }
-
-  /* ----------------------- 5. FORMULAIRE CONTACT -------------------------- *
-   * Supabase d'abord (INSERT dataroom_contact_requests), fallback mailto:.
-   * Le module Supabase est chargé sur la page via <script type="module">
-   * et expose window.__ngSupabase = { supabase, logAction, ... }.
-   * Si le module n'a pas pu se charger (offline), on retombe sur le mailto.
-   * ----------------------------------------------------------------------- */
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const status = document.getElementById('contact-status');
-      if (status) { status.classList.remove('is-error', 'is-ok'); status.textContent = ''; }
+      clearMsg();
 
-      // Validation simple
-      const required = contactForm.querySelectorAll('[required]');
-      let ok = true;
-      required.forEach((f) => {
-        const empty = f.type === 'checkbox' ? !f.checked : !String(f.value || '').trim();
-        if (empty) { f.classList.add('is-error'); ok = false; }
-        else { f.classList.remove('is-error'); }
-      });
-      if (!ok) {
-        if (status) {
-          status.textContent = 'Merci de compléter les champs obligatoires.';
-          status.classList.add('is-error');
-        }
-        return;
-      }
-
-      const get = (n) => {
-        const el = contactForm.querySelector(`[name="${n}"]`);
-        return el ? String(el.value || '').trim() : '';
+      const fd = new FormData(form);
+      const payload = {
+        first_name:        fd.get('first_name'),
+        last_name:         fd.get('last_name'),
+        company:           fd.get('company'),
+        job_title:         fd.get('job_title'),
+        email:             fd.get('email'),
+        phone:             fd.get('phone'),
+        acquirer_profile:  fd.get('acquirer_profile'),
+        message:           fd.get('message'),
+        confidentiality_accepted: !!fd.get('confidentiality_accepted'),
       };
 
-      const prenom = get('prenom');
-      const nom = get('nom');
-      const societe = get('societe');
-      const fonction = get('fonction');
-      const email = get('email');
-      const tel = get('tel');
-      const profil = get('profil');
-      const message = get('message');
-      const nda = !!contactForm.querySelector('[name="nda"]:checked');
-
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      if (submitBtn) submitBtn.disabled = true;
-      if (status) {
-        status.classList.add('is-ok');
-        status.textContent = 'Envoi en cours…';
+      // validation basique
+      if (!payload.first_name || !payload.last_name) {
+        showMsg('Merci de renseigner votre nom et votre prénom.', 'error'); return;
+      }
+      if (!payload.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(payload.email))) {
+        showMsg('Merci de renseigner un email valide.', 'error'); return;
+      }
+      if (!payload.confidentiality_accepted) {
+        showMsg('Merci de cocher l\'engagement de confidentialité.', 'error'); return;
       }
 
-      // ---- 1) Tentative INSERT Supabase ------------------------------
-      let savedToDb = false;
+      submitBtn.disabled = true;
+      const originalLabel = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span class="spinner"></span> Envoi en cours…';
+
       try {
-        if (window.__ngSupabase && window.__ngSupabase.submitContactRequest) {
-          savedToDb = await window.__ngSupabase.submitContactRequest({
-            first_name: prenom,
-            last_name: nom,
-            company: societe,
-            job_title: fonction || null,
-            email,
-            phone: tel,
-            acquirer_profile: profil,
-            message,
-            confidentiality_accepted: nda,
-            user_agent: navigator.userAgent || null,
-            referrer: document.referrer || null,
-          });
+        // patiente jusqu'à 3 s que le module Supabase soit chargé
+        const t0 = Date.now();
+        while ((!window.__ngSupabase || !window.__ngSupabase.submitContactRequest) && Date.now() - t0 < 3000) {
+          await new Promise((r) => setTimeout(r, 100));
         }
-      } catch (_e) {
-        savedToDb = false;
+        if (!window.__ngSupabase || !window.__ngSupabase.submitContactRequest) {
+          showMsg('Service indisponible. Merci de réessayer dans quelques minutes.', 'error');
+          return;
+        }
+        const ok = await window.__ngSupabase.submitContactRequest(payload);
+        if (ok) {
+          form.reset();
+          showMsg('Votre demande a bien été enregistrée. Le mandataire reviendra vers vous sous 24 h ouvrées avec les accès à la DataRoom.', 'ok');
+          if (msgEl) msgEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          showMsg('Votre demande n\'a pas pu être enregistrée. Merci de réessayer dans quelques minutes.', 'error');
+        }
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.warn('[contact]', err);
+        showMsg('Une erreur est survenue. Merci de réessayer dans quelques minutes.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalLabel;
       }
-
-      if (savedToDb) {
-        // Succès : message in-page, on cache le formulaire
-        showContactConfirm();
-        return;
-      }
-
-      // ---- 2) Fallback mailto: obfusqué -----------------------------
-      if (status) {
-        status.classList.remove('is-ok');
-        status.textContent = 'Envoi par mail en cours (votre client mail va s\'ouvrir)…';
-      }
-      const u = 'benoit' + '.' + 'galy';
-      const d = 'green' + '-' + 'acres' + '.' + 'com';
-      const to = u + '@' + d;
-
-      const subject = `[Vente Anciennes Nouvelles Galeries] Demande de ${prenom} ${nom} — ${societe}`;
-      const lines = [
-        `Bonjour,`,
-        ``,
-        `Je vous contacte au sujet de la vente de l'ensemble immobilier Cours Victor Hugo / Rue Bernard Palissy à Villeneuve-sur-Lot.`,
-        ``,
-        `— Identité —`,
-        `Prénom : ${prenom}`,
-        `Nom : ${nom}`,
-        `Société / Structure : ${societe}`,
-        fonction ? `Fonction : ${fonction}` : null,
-        `Email professionnel : ${email}`,
-        `Téléphone : ${tel}`,
-        `Profil d'acquéreur : ${profil}`,
-        ``,
-        `— Message —`,
-        message,
-        ``,
-        `— Engagement —`,
-        `Je m'engage à traiter les informations échangées dans un cadre strictement confidentiel.`,
-        ``,
-        `Cordialement,`,
-        `${prenom} ${nom}`,
-      ].filter(Boolean);
-
-      const body = lines.join('\r\n');
-      const mailto = 'mailto:' + to
-        + '?subject=' + encodeURIComponent(subject)
-        + '&body=' + encodeURIComponent(body);
-      setTimeout(() => { window.location.href = mailto; }, 120);
-
-      if (submitBtn) submitBtn.disabled = false;
-    });
-
-    function showContactConfirm() {
-      const wrapper = contactForm.parentElement;
-      if (!wrapper) return;
-      contactForm.style.display = 'none';
-      const div = document.createElement('div');
-      div.className = 'contact-confirm';
-      div.innerHTML = `
-        <span class="eyebrow">Demande transmise</span>
-        <h3>Votre demande a bien été transmise.</h3>
-        <p>Le mandataire reviendra vers vous sous 24h ouvrées avec le lien d'accès à la DataRoom. Vous recevrez un email contenant un lien sécurisé qui vous permettra de consulter l'intégralité des pièces du dossier.</p>
-      `;
-      wrapper.appendChild(div);
-      div.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    // Clean error on input
-    contactForm.querySelectorAll('input, select, textarea').forEach((el) => {
-      el.addEventListener('input', () => el.classList.remove('is-error'));
-      el.addEventListener('change', () => el.classList.remove('is-error'));
     });
   }
 
-  /* ----------------------- 6. DATAROOM ------------------------------------ */
-  /* L'auth DataRoom est désormais gérée par assets/dataroom-auth.js
-     (Supabase magic link). Aucune logique mot-de-passe ici. */
-
-  /* ----------------------- 7. ANNÉE COURANTE DANS LE FOOTER --------------- */
-  const yearEl = document.getElementById('current-year');
-  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+  /* ---------------------- 5. année footer --------------------------- */
+  const year = $('#footer-year');
+  if (year) year.textContent = new Date().getFullYear();
 })();

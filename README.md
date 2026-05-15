@@ -1,90 +1,98 @@
 # Anciennes Nouvelles Galeries — Cours Victor Hugo, Villeneuve-sur-Lot
 
-Site de présentation d'une cession immobilière, multi-pages, style annonce immobilière premium.
+Site d'annonce immobilière pour la cession d'un ensemble immobilier mixte 3 181 m² SDP en cœur de bastide.
 
 - **Vendeur** : SARL JMG IMMOB (SIREN 844 912 964 — RCS Agen)
-- **Bien** : ensemble immobilier mixte de 3 181 m² SDP sur 1 099 m² de foncier traversant, en cœur de bastide historique de Villeneuve-sur-Lot (47).
-- **Prix** : 350 000 € net vendeur (offre exceptionnelle à 280 000 € net vendeur si paiement intégral avant le 31 décembre 2026, sans clause suspensive).
-- **Contact** : exclusivement via le formulaire en ligne du site (aucune coordonnée publique).
-- **URL publique** : https://benoitgaly.github.io/vente-nouvelles-galeries-vsl/
+- **Bien** : ensemble immobilier mixte de 3 181 m² SDP sur 1 099 m² de foncier traversant, 4 parcelles (EV 8 · 9 · 20 · 21), Cours Victor Hugo / rue Bernard Palissy, 47300 Villeneuve-sur-Lot.
+- **Prix** : 350 000 € net vendeur. Offre à 280 000 € net vendeur si paiement intégral avant le 31/12/2026 sans clause suspensive.
+- **Contact** : exclusivement via le formulaire en ligne (aucune coordonnée publique).
+
+## Référentiel design
+
+Le site est calibré sur les **annonces immobilières grand public** type SeLoger, LeBonCoin, Bienici, Green-Acres. Pas de mise en page « mémorandum d'investissement » ni « cabinet de conseil premium » :
+
+- carrousel plein largeur, photos sans texte par-dessus, ouvrable en lightbox plein écran ;
+- une seule page d'annonce (`index.html`) avec dans l'ordre : photos, titre + prix, key facts, description courte (3 §), encart offre 280 k€, tableau caractéristiques, localisation + carte OSM, diagnostics, formulaire de contact intégré ;
+- couleurs sobres + accent orange (codes SeLoger), accent vert pour l'encart offre.
 
 ## Structure
 
 ```
 site/
-├── index.html              ← Accueil : carrousel + chiffres + intro + formulaire
-├── le-bien.html            ← Composition par niveau, parcelles, galeries photos
-├── localisation.html       ← Villeneuve-sur-Lot, centre réaménagé, accès
-├── urbanisme.html          ← Zone UA, SPR, aides, risques, diagnostics
-├── investissement.html     ← Prix, fiscalité, cibles acquéreurs, conditions
-├── dataroom.html           ← Espace documentaire protégé (auth Supabase magic link)
-├── admin.html              ← Back-office mandataire (Supabase, accès email-restreint)
-├── assets/
-│   ├── style.css           ← Feuille de style principale
-│   ├── supabase-ui.css     ← Surcouche styles auth/back-office/contact
-│   ├── main.js             ← Carrousel, nav, formulaire contact
-│   ├── supabase-client.js  ← Client Supabase + helpers (logAction, isAdmin, getCurrentUser)
-│   ├── supabase-contact.js ← Bridge module → formulaire de contact
-│   ├── dataroom-auth.js    ← Auth magic link + journalisation DataRoom
-│   ├── admin.js            ← Back-office : demandes, users, logs
-│   ├── memorandum.pdf
-│   ├── photos/
-│   ├── plans/
-│   └── dataroom/           ← PDF de la DataRoom (actes, diags, fiscalité…)
-├── README.md
-└── .gitignore
+├── index.html            ← Annonce : carrousel + descriptif + caractéristiques + formulaire
+├── dataroom.html         ← Espace documentaire protégé (auth Supabase magic link)
+├── admin.html            ← Back-office mandataire
+└── assets/
+    ├── style.css            ← Feuille de style unique (annonce immobilière)
+    ├── main.js              ← Carrousel, lightbox, formulaire contact, burger mobile
+    ├── supabase-client.js   ← Client Supabase + helpers (logAction, isAdmin, getCurrentUser)
+    ├── supabase-contact.js  ← Bridge formulaire → Supabase
+    ├── dataroom-auth.js     ← Auth magic link DataRoom + journalisation
+    ├── admin.js             ← Back-office (demandes, utilisateurs, logs)
+    ├── memorandum.pdf
+    ├── plans/
+    ├── photos_v2/           ← Photos classées par bâtiment / niveau
+    │   ├── 8bis-8ter-cours-victor-hugo/
+    │   │   ├── exterieur/   ← façade Cours V. Hugo, vue large rue
+    │   │   ├── rdc/         ← magasin RDC
+    │   │   ├── r1/          ← étage R+1
+    │   │   ├── r2/
+    │   │   ├── sous-sol/
+    │   │   └── cour/        ← patio intérieur
+    │   ├── 10-cours-victor-hugo/ ← immeuble annexe pierre
+    │   ├── appartement-t2/  ← appartement loué
+    │   ├── plans/
+    │   ├── archives-notariales/  ← clés, internes, non utilisés
+    │   └── _a_valider/
+    └── dataroom/            ← PDF DataRoom (mémo, actes, diags, fiscalité, mandat)
 ```
+
+## Photos utilisées sur l'annonce (13 slides)
+
+Toutes issues du classement validé dans `_inventaire_photos.md`. Aucune photo de Marmande, aucune photo de clés notariales. Seules les photos classées **pertinence = OUI** et **bâtiment ∈ {8 bis/ter, 10 Cours, T2}** sont utilisées.
+
+1. Façade Cours Victor Hugo (8 bis/ter) — `8bis-exterieur-01-facade-cours-victor-hugo.jpg`
+2. Vue de rue large avec 10 Cours — `8bis-exterieur-02-vue-rue-large.jpg`
+3. Pièce RDC à lambris bleu — `8bis-rdc-02-piece-lambris-bleu.jpg`
+4. Pièce RDC vers escalier — `8bis-rdc-03-piece-vers-escalier.jpg`
+5. Escalier vers sous-sol 731 m² — `8bis-sous-sol-01-escalier-descente.jpg`
+6. Patio cour intérieure — `8bis-cour-01-patio-vegetation.jpg`
+7. Pièce R+1 bureau — `8bis-r1-01-piece-bureau-faux-plafond.jpg`
+8. Pièce R+1 cheminée murée — `8bis-r1-02-piece-cheminee-muree.jpg`
+9. Appartement T2 — pièce sur Cours — `t2-01-piece-balcon-vue-cours.jpg`
+10. Appartement T2 — chambre — `t2-04-chambre-fenetre.jpg`
+11. Appartement T2 — combles — `t2-06-combles-velux-poutre.jpg`
+12. 10 Cours — escalier balustres XIXe — `10-cours-interieur-03-escalier-balustres.jpg`
+13. Plan cadastral 4 parcelles — `plan-cadastral.jpg`
 
 ## Intégration Supabase
 
-- **Projet Supabase** : `https://qztbujxthacstmjiqdzf.supabase.co`
-- **Publishable key** (exposable côté client) : `sb_publishable_eEOLeESrlN_XrPWzNNTeWQ_5hshjDBy`
-  - La sécurité est portée par les **RLS policies** côté DB, pas par le secret de cette clé.
+- **Projet** : `https://qztbujxthacstmjiqdzf.supabase.co`
+- **Publishable key** : `sb_publishable_eEOLeESrlN_XrPWzNNTeWQ_5hshjDBy` (sécurité portée par RLS).
 - **Tables** :
   - `dataroom_contact_requests` — INSERT public anonyme (formulaire de contact)
-  - `dataroom_users` — utilisateurs autorisés (lié à `auth.users` après approbation admin)
-  - `dataroom_access_log` — journal d'audit (INSERT public + authenticated, SELECT user-own ou admin)
-  - view `dataroom_admin_dashboard` — synthèse demandes + statut + login count + last login (admin uniquement)
-- **Authentification** : magic link email (passwordless) via `supabase.auth.signInWithOtp`.
-- **Email admin** : `benoit.galy@green-acres.com` (la fonction Postgres `public.is_dataroom_admin()` côté DB compare le claim `email` du JWT à cette adresse).
-  Pour changer l'admin, modifier la fonction `is_dataroom_admin()` côté Supabase :
-  ```sql
-  CREATE OR REPLACE FUNCTION public.is_dataroom_admin() RETURNS boolean
-  LANGUAGE sql STABLE SECURITY DEFINER SET search_path TO 'public' AS $$
-    SELECT COALESCE((SELECT auth.jwt() ->> 'email' IN ('nouvel.email@exemple.com')), false);
-  $$;
-  ```
+  - `dataroom_users` — utilisateurs autorisés
+  - `dataroom_access_log` — journal d'audit
+  - vue `dataroom_admin_dashboard` — synthèse demandes (admin only)
+- **Authentification** : magic link via `supabase.auth.signInWithOtp`.
+- **Email admin** côté DB : fonction `public.is_dataroom_admin()` qui compare `auth.jwt()->>'email'` à l'email autorisé.
 
-## Pages
+### Formulaire de contact (`index.html`)
+1. INSERT dans `dataroom_contact_requests`
+2. log `contact_form_submitted` dans `dataroom_access_log`
+3. confirmation inline (pas de mailto fallback — l'email n'est jamais exposé)
 
 ### `/dataroom.html`
-Espace documentaire protégé. Plus de mot de passe partagé : l'accès se fait via un magic link envoyé sur l'email professionnel de l'acquéreur, **après validation manuelle par le mandataire** dans le back-office. Toutes les actions (login, téléchargements) sont journalisées dans `dataroom_access_log`.
+Magic link → si l'email est dans `dataroom_users` avec `status='approved'`, l'auth réussit et le contenu se débloque. Chaque session et chaque téléchargement sont logués.
 
 ### `/admin.html`
-Back-office mandataire (URL directe, non listée dans la navigation publique). Permet :
-- de visualiser les **demandes entrantes** (vue `dataroom_admin_dashboard`),
-- d'**approuver** une demande (création/UPSERT de l'utilisateur dans `dataroom_users` avec `status='approved'`),
-- de **rejeter** une demande,
-- de **révoquer** ou **réactiver** un accès,
-- de consulter les **100 derniers logs d'accès**.
+Magic link réservé à l'email admin. 3 onglets : Demandes entrantes (approuver/rejeter), Utilisateurs (révoquer/réactiver), Journal d'accès (100 dernières lignes).
 
-Auth admin = magic link + vérification que l'email correspond à l'admin (côté client pour la nav, côté DB pour les RLS).
+## Règles éditoriales
 
-### `/index.html`
-Page d'accueil. Le formulaire de contact :
-1. INSERT dans `dataroom_contact_requests` via Supabase,
-2. logge `contact_form_submitted` dans `dataroom_access_log`,
-3. affiche un message de confirmation in-page,
-4. **fallback mailto:** uniquement si Supabase est indisponible (mode dégradé).
-
-## Règles éditoriales respectées
-
-- **Aucune coordonnée publique dans le DOM rendu** : email et téléphone du mandataire n'apparaissent jamais dans le HTML visible. Seuls le JS reconstruit l'email à la volée (variable, jamais affichée) pour le fallback mailto et la vérification admin.
-- **Pas de reprise de mise en forme tierce** : tout le contenu rédactionnel est reformulé.
-
-## Carrousel d'accueil
-
-Sept slides en rotation automatique (6 s), navigation manuelle (flèches, dots, swipe tactile). Pause au hover.
+- Aucune coordonnée personnelle (email, tél) dans le DOM rendu côté visiteur. L'email admin est reconstruit en JS uniquement pour la comparaison côté client (jamais affiché).
+- Mention « le mandataire » uniquement, contact via formulaire.
+- Pas de reprise de mise en forme tierce (Sinico) : tout le rédactionnel est reformulé.
 
 ## Test local
 
@@ -94,20 +102,10 @@ python -m http.server 8000
 # puis http://localhost:8000/
 ```
 
-Le site fonctionne en local mais Supabase exige une origine HTTPS pour certaines opérations d'auth dans certains navigateurs — préférer le test en production (GitHub Pages) pour vérifier la chaîne auth complète.
+L'auth Supabase fonctionne mieux en HTTPS — tester en production (GitHub Pages) pour la chaîne complète.
 
-## Publication GitHub Pages
+## Confidentialité
 
-```bash
-git add .
-git commit -m "Intégration Supabase : auth magic link DataRoom, logs d'accès, back-office admin"
-git push
-```
-
-URL publique : https://benoitgaly.github.io/vente-nouvelles-galeries-vsl/
-
-## Licence et confidentialité
-
-- Photographies, plans, mémorandum : propriété de la SARL JMG IMMOB.
-- DataRoom (titres, diagnostics, baux, mandat) : communiquée sous engagement de confidentialité, accès journalisé.
-- Aucune coordonnée personnelle ne figure publiquement (cf. règles internes JMG IMMOB).
+- Photos et plans : propriété SARL JMG IMMOB.
+- DataRoom : communiquée sous engagement de confidentialité, accès journalisé.
+- Pas de coordonnée personnelle publique.
