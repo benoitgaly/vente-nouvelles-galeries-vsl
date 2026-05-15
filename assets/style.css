@@ -1161,6 +1161,17 @@ header [class*="brand"] { white-space: nowrap; }
 .specs tr:nth-child(even) th,
 .specs tr:nth-child(even) td { background: var(--paper-cream); }
 
+/* Ligne taxe foncière mise en avant en tête de tableau */
+.specs tr.specs__highlight th,
+.specs tr.specs__highlight td {
+  background: var(--gold-bg);
+  border-bottom: 1px solid var(--gold-soft);
+}
+.specs tr.specs__highlight td {
+  font-size: 1.02rem;
+}
+.specs tr.specs__highlight td strong { color: var(--ink); }
+
 @media (max-width: 640px) {
   .specs th, .specs td { padding: 14px 18px; display: block; width: 100%; }
   .specs th { padding-bottom: 6px; border-bottom: 0; }
@@ -1936,6 +1947,22 @@ header [class*="brand"] { white-space: nowrap; }
 .prix-step__desc {
   font-size: .92rem;
   line-height: 1.5;
+  color: var(--ink-soft);
+}
+/* Sous-ligne complémentaire dans la description : précision factuelle
+   (ex. : promesse de vente 2020 à 335 000 €). En italique discret, taille
+   légèrement réduite, retrait visuel. */
+.prix-step__detail {
+  display: block;
+  margin-top: .35rem;
+  font-size: .85rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+.prix-step__detail strong {
+  font-style: normal;
+  font-weight: 600;
   color: var(--ink-soft);
 }
 
