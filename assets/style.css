@@ -412,6 +412,7 @@ header [class*="brand"] { white-space: nowrap; }
   padding: 8px 18px;
   border-radius: var(--radius-pill);
   letter-spacing: .04em;
+  white-space: nowrap;
   z-index: 2;
 }
 
@@ -460,6 +461,7 @@ header [class*="brand"] { white-space: nowrap; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
   transition: background var(--t), border-color var(--t), color var(--t);
 }
 .carousel__expand:hover {
