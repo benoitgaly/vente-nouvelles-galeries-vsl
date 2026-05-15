@@ -132,12 +132,18 @@
     });
   }
 
-  /* ----------------------- 5. FORMULAIRE CONTACT (mailto obfusqué) -------- */
+  /* ----------------------- 5. FORMULAIRE CONTACT -------------------------- *
+   * Supabase d'abord (INSERT dataroom_contact_requests), fallback mailto:.
+   * Le module Supabase est chargé sur la page via <script type="module">
+   * et expose window.__ngSupabase = { supabase, logAction, ... }.
+   * Si le module n'a pas pu se charger (offline), on retombe sur le mailto.
+   * ----------------------------------------------------------------------- */
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const status = document.getElementById('contact-status');
+      if (status) { status.classList.remove('is-error', 'is-ok'); status.textContent = ''; }
 
       // Validation simple
       const required = contactForm.querySelectorAll('[required]');
@@ -148,7 +154,10 @@
         else { f.classList.remove('is-error'); }
       });
       if (!ok) {
-        if (status) status.textContent = 'Merci de compléter les champs obligatoires.';
+        if (status) {
+          status.textContent = 'Merci de compléter les champs obligatoires.';
+          status.classList.add('is-error');
+        }
         return;
       }
 
@@ -165,8 +174,48 @@
       const tel = get('tel');
       const profil = get('profil');
       const message = get('message');
+      const nda = !!contactForm.querySelector('[name="nda"]:checked');
 
-      // Reconstruction de l'adresse au runtime (jamais présente dans le DOM)
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+      if (status) {
+        status.classList.add('is-ok');
+        status.textContent = 'Envoi en cours…';
+      }
+
+      // ---- 1) Tentative INSERT Supabase ------------------------------
+      let savedToDb = false;
+      try {
+        if (window.__ngSupabase && window.__ngSupabase.submitContactRequest) {
+          savedToDb = await window.__ngSupabase.submitContactRequest({
+            first_name: prenom,
+            last_name: nom,
+            company: societe,
+            job_title: fonction || null,
+            email,
+            phone: tel,
+            acquirer_profile: profil,
+            message,
+            confidentiality_accepted: nda,
+            user_agent: navigator.userAgent || null,
+            referrer: document.referrer || null,
+          });
+        }
+      } catch (_e) {
+        savedToDb = false;
+      }
+
+      if (savedToDb) {
+        // Succès : message in-page, on cache le formulaire
+        showContactConfirm();
+        return;
+      }
+
+      // ---- 2) Fallback mailto: obfusqué -----------------------------
+      if (status) {
+        status.classList.remove('is-ok');
+        status.textContent = 'Envoi par mail en cours (votre client mail va s\'ouvrir)…';
+      }
       const u = 'benoit' + '.' + 'galy';
       const d = 'green' + '-' + 'acres' + '.' + 'com';
       const to = u + '@' + d;
@@ -197,15 +246,28 @@
       ].filter(Boolean);
 
       const body = lines.join('\r\n');
-
       const mailto = 'mailto:' + to
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(body);
+      setTimeout(() => { window.location.href = mailto; }, 120);
 
-      if (status) status.textContent = 'Ouverture de votre client mail…';
-      // Petit délai pour laisser le navigateur peindre le message
-      setTimeout(() => { window.location.href = mailto; }, 100);
+      if (submitBtn) submitBtn.disabled = false;
     });
+
+    function showContactConfirm() {
+      const wrapper = contactForm.parentElement;
+      if (!wrapper) return;
+      contactForm.style.display = 'none';
+      const div = document.createElement('div');
+      div.className = 'contact-confirm';
+      div.innerHTML = `
+        <span class="eyebrow">Demande transmise</span>
+        <h3>Votre demande a bien été transmise.</h3>
+        <p>Le mandataire reviendra vers vous sous 24h ouvrées avec le lien d'accès à la DataRoom. Vous recevrez un email contenant un lien sécurisé qui vous permettra de consulter l'intégralité des pièces du dossier.</p>
+      `;
+      wrapper.appendChild(div);
+      div.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 
     // Clean error on input
     contactForm.querySelectorAll('input, select, textarea').forEach((el) => {
@@ -214,39 +276,9 @@
     });
   }
 
-  /* ----------------------- 6. DATAROOM (mot de passe JS) ------------------ */
-  const drForm = document.getElementById('dataroom-gate-form');
-  if (drForm) {
-    const PASS = 'nouvelles-galeries-2026';
-    const STORAGE_KEY = 'ng_dr_unlocked_v1';
-    const gate = document.querySelector('.dataroom-gate');
-    const content = document.querySelector('.dataroom-content');
-    const errEl = document.querySelector('.gate-error');
-
-    const unlock = () => {
-      if (gate) gate.classList.add('is-hidden');
-      if (content) content.classList.add('is-open');
-      try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
-    };
-
-    // Auto-unlock si déjà passé dans la session
-    try {
-      if (sessionStorage.getItem(STORAGE_KEY) === '1') unlock();
-    } catch (e) {}
-
-    drForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const input = drForm.querySelector('input[name="pass"]');
-      const val = (input && input.value || '').trim().toLowerCase();
-      if (val === PASS) {
-        if (errEl) errEl.textContent = '';
-        unlock();
-      } else {
-        if (errEl) errEl.textContent = 'Mot de passe incorrect. Réessayez ou contactez le mandataire.';
-        if (input) { input.classList.add('is-error'); input.focus(); }
-      }
-    });
-  }
+  /* ----------------------- 6. DATAROOM ------------------------------------ */
+  /* L'auth DataRoom est désormais gérée par assets/dataroom-auth.js
+     (Supabase magic link). Aucune logique mot-de-passe ici. */
 
   /* ----------------------- 7. ANNÉE COURANTE DANS LE FOOTER --------------- */
   const yearEl = document.getElementById('current-year');

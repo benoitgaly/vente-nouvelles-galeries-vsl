@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/supabase-ui.css">
 </head>
 <body>
 
@@ -87,12 +88,35 @@
       <div class="figure">
         <div class="figure__value">350<span class="unit">k€</span></div>
         <div class="figure__label">Prix net vendeur</div>
-        <div class="figure__note">Offre exceptionnelle −20 % avant 31/12/2026</div>
+        <div class="figure__note"><a href="#offre" style="color: var(--gold); border-bottom: 1px dotted currentColor;">Offre exceptionnelle : 280 k€ sous conditions ↓</a></div>
       </div>
       <div class="figure">
         <div class="figure__value">UA</div>
         <div class="figure__label">Zone PLUih</div>
         <div class="figure__note">Site Patrimonial Remarquable · Action Cœur de Ville</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== OFFRE EXCEPTIONNELLE ========================= -->
+<section class="offer" id="offre">
+  <div class="wrap">
+    <div class="offer__card">
+      <div class="offer__left">
+        <span class="offer__eyebrow">Offre exceptionnelle</span>
+        <h2 class="offer__title">280 000 <span class="offer__currency">€</span></h2>
+        <div class="offer__sub">net vendeur — <strong>remise de 70 000 €</strong> consentie sur le prix de cession ordinaire de 350 000 €.</div>
+      </div>
+      <div class="offer__right">
+        <h3 class="offer__cond-title">Conditions précises de la remise</h3>
+        <ul class="offer__conditions">
+          <li><strong>Paiement intégral du prix</strong> (280 000 €) par virement notaire à la date de l'acte authentique, avant le <strong>31 décembre 2026</strong>.</li>
+          <li><strong>Aucune clause suspensive</strong> stipulée à la promesse — ni clause de financement, ni clause d'urbanisme, ni clause de permis de construire.</li>
+          <li><strong>Justificatif de capacité financière</strong> à fournir avec l'offre d'achat (preuve de fonds disponibles ou accord bancaire ferme préalable).</li>
+          <li><strong>Indemnité d'immobilisation</strong> usuelle (10 % du prix) consignée à la signature de la promesse, acquise au vendeur en cas de défaillance imputable à l'acquéreur.</li>
+        </ul>
+        <p class="offer__footnote">Au-delà du 31 décembre 2026, ou en présence d'une clause suspensive, le prix demeure de <strong>350 000 € net vendeur</strong>. Cession traditionnelle en pleine propriété chez Me PRAT à Beauville (Lot-et-Garonne). Honoraires d'agence et frais d'acte à la charge de l'acquéreur.</p>
       </div>
     </div>
   </div>
@@ -216,7 +240,7 @@
         </button>
         <span class="form-status" id="contact-status"></span>
       </div>
-      <p class="muted" style="margin-top:18px; font-size:0.82rem; line-height:1.6;">À l'envoi, votre client mail s'ouvre avec un message pré-rempli adressé au mandataire. Aucune donnée n'est transmise à un service tiers.</p>
+      <p class="muted" style="margin-top:18px; font-size:0.82rem; line-height:1.6;">Votre demande est transmise au mandataire et journalisée en base sécurisée. Vous recevrez le lien d'accès à la DataRoom après validation (sous 24h ouvrées). Aucune information n'est partagée avec un tiers.</p>
     </form>
   </div>
 </section>
@@ -256,6 +280,7 @@
   </div>
 </footer>
 
+<script type="module" src="assets/supabase-contact.js"></script>
 <script src="assets/main.js" defer></script>
 </body>
 </html>

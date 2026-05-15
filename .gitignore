@@ -11,3 +11,9 @@ desktop.ini
 
 # Logs locaux
 *.log
+
+# Variables d'env (par sécurité, même si tout est en clair côté client)
+.env
+.env.*
+!.env.example
+

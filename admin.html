@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Back-office — Anciennes Nouvelles Galeries · Villeneuve-sur-Lot</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/supabase-ui.css">
+</head>
+<body class="theme-light">
+
+<header class="site-nav is-scrolled" id="site-nav">
+  <div class="wrap">
+    <a class="site-nav__brand" href="index.html">
+      Anciennes Nouvelles Galeries
+      <small>Villeneuve-sur-Lot</small>
+    </a>
+    <nav class="site-nav__menu" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="dataroom.html">DataRoom</a>
+      <a href="admin.html" class="is-active">Back-office</a>
+    </nav>
+    <button class="site-nav__burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================ LOGIN ==================================== -->
+<section class="admin-login" id="admin-login">
+  <div class="gate-card">
+    <span class="eyebrow">Back-office</span>
+    <h1>Accès mandataire</h1>
+    <p>Espace réservé au mandataire de la SARL JMG IMMOB. Renseignez votre email — un lien de connexion vous sera envoyé.</p>
+    <form id="admin-login-form" novalidate>
+      <div class="form-field">
+        <label for="adm-email">Email</label>
+        <input id="adm-email" name="email" type="email" required autocomplete="email" spellcheck="false" autofocus>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn--gold" id="adm-submit">
+          Recevoir le lien
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="gate-msg" id="adm-msg" hidden></div>
+    </form>
+  </div>
+</section>
+
+<!-- ============================ SHELL ==================================== -->
+<main class="admin-shell" id="admin-shell" style="display:none;">
+  <div class="wrap">
+
+    <header class="admin-head">
+      <div>
+        <span class="eyebrow">Back-office mandataire</span>
+        <h1>Suivi des demandes &amp; accès DataRoom</h1>
+      </div>
+      <div class="dr-session__actions">
+        <button type="button" class="btn--ghost" id="adm-logout">Se déconnecter</button>
+      </div>
+    </header>
+
+    <!-- Demandes -->
+    <section class="admin-section" id="sec-requests">
+      <header>
+        <h2>Demandes entrantes</h2>
+        <span class="admin-count" id="cnt-requests">—</span>
+      </header>
+      <div id="tbl-requests-wrap">
+        <p class="muted">Chargement…</p>
+      </div>
+    </section>
+
+    <!-- Utilisateurs -->
+    <section class="admin-section" id="sec-users">
+      <header>
+        <h2>Utilisateurs DataRoom</h2>
+        <span class="admin-count" id="cnt-users">—</span>
+      </header>
+      <div id="tbl-users-wrap">
+        <p class="muted">Chargement…</p>
+      </div>
+    </section>
+
+    <!-- Logs -->
+    <section class="admin-section" id="sec-logs">
+      <header>
+        <h2>Logs d'accès récents</h2>
+        <span class="admin-count" id="cnt-logs">—</span>
+      </header>
+      <div id="tbl-logs-wrap">
+        <p class="muted">Chargement…</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Toast -->
+<div id="admin-toast" class="admin-message" style="display:none;"></div>
+
+<script src="assets/main.js" defer></script>
+<script type="module" src="assets/admin.js"></script>
+</body>
+</html>
