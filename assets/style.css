@@ -141,7 +141,15 @@ p { margin: 0 0 1rem; }
   transition: transform .2s, opacity .2s;
 }
 
-@media (max-width: 760px) {
+/* Empêcher la rupture du logo JMG IMMOB sur 2 lignes */
+.nav__brand,
+.nav__logo,
+.brand,
+header .brand,
+header [class*="logo"],
+header [class*="brand"] { white-space: nowrap; }
+
+@media (max-width: 1024px) {
   .nav__menu {
     position: absolute;
     top: 100%;
@@ -155,6 +163,7 @@ p { margin: 0 0 1rem; }
     border-bottom: 1px solid var(--c-border);
     box-shadow: var(--shadow);
     display: none;
+    z-index: 100;
   }
   .nav__menu.is-open { display: flex; }
   .nav__menu a { padding: 14px var(--pad); border-bottom: 1px solid var(--c-border); }
