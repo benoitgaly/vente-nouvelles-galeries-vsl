@@ -2153,6 +2153,10 @@ header [class*="brand"] { white-space: nowrap; }
   color: #f3d68c;
   font-weight: 700;
 }
+/* "sans clause suspensive" : +4px par rapport au reste pour saillance */
+.prix-offer .prix-offer__terms .prix-offer__keyword {
+  font-size: calc(.95rem + 4px);
+}
 
 @media (max-width: 840px) {
   .prix__layout {
