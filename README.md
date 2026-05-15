@@ -1,49 +1,75 @@
 # Anciennes Nouvelles Galeries — Cours Victor Hugo, Villeneuve-sur-Lot
 
-Site institutionnel de présentation d'une cession immobilière.
+Site de présentation d'une cession immobilière, multi-pages, style annonce immobilière premium.
 
 - **Vendeur** : SARL JMG IMMOB (SIREN 844 912 964 — RCS Agen)
 - **Bien** : ensemble immobilier mixte de 3 181 m² SDP sur 1 099 m² de foncier traversant, en cœur de bastide historique de Villeneuve-sur-Lot (47).
 - **Prix** : 350 000 € net vendeur (offre exceptionnelle à 280 000 € net vendeur si paiement intégral avant le 31 décembre 2026, sans clause suspensive).
-- **Contact** : exclusivement via le formulaire en ligne du site.
+- **Contact** : exclusivement via le formulaire en ligne du site (aucune coordonnée publique).
+- **URL publique** : https://benoitgaly.github.io/vente-nouvelles-galeries-vsl/
 
 ## Structure
 
-- `index.html` — page unique du site
-- `assets/style.css` — design system institutionnel
-- `assets/main.js` — comportements (nav, smooth scroll, soumission formulaire)
-- `assets/memorandum.pdf` — mémorandum d'investissement (12 pages)
-- `assets/photos/` — 27 photographies du bien (JPG ≤ 1920 px)
-- `assets/plans/` — plan cadastral en JPG
+```
+site/
+├── index.html              ← Accueil : carrousel + chiffres + intro + formulaire
+├── le-bien.html            ← Composition par niveau, parcelles, galeries photos
+├── localisation.html       ← Villeneuve-sur-Lot, centre réaménagé, accès
+├── urbanisme.html          ← Zone UA, SPR, aides, risques, diagnostics
+├── investissement.html     ← Prix, fiscalité, cibles acquéreurs, conditions
+├── dataroom.html           ← Espace documentaire protégé (mot de passe JS)
+├── assets/
+│   ├── style.css           ← Feuille de style unique — palette ink/gold/paper
+│   ├── main.js             ← Carrousel, nav, formulaire mailto, gate DataRoom
+│   ├── memorandum.pdf      ← Mémorandum d'investissement complet
+│   ├── photos/
+│   │   ├── hero/           ← 4 photos extérieures grand format
+│   │   ├── epoque/         ← 7 photos d'époque (années 2000)
+│   │   └── img_*.jpg       ← 27 photos intérieures actuelles
+│   ├── plans/
+│   │   └── plan-cadastral.jpg
+│   └── dataroom/           ← PDF de la DataRoom (actes, diags, fiscalité…)
+├── README.md
+└── .gitignore
+```
 
-## Configuration du formulaire (Google Forms)
+## Règles éditoriales respectées
 
-Le formulaire de demande d'accès à la DataRoom POSTe vers un Google Form.
-Les soumissions arrivent dans la Google Sheet liée au Form.
+- **Aucun service tiers** : pas de Formspree, Google Forms, Apps Script, etc.
+- **Aucune coordonnée publique** : email et téléphone du mandataire n'apparaissent nulle part dans le DOM. Le formulaire de contact reconstruit l'adresse au runtime par concaténation JS et déclenche un `mailto:` ouvert dans le client mail du visiteur.
+- **DataRoom protégée** par mot de passe JS — protection symbolique, le mot de passe est communiqué de gré à gré au moment de l'envoi des identifiants.
+- **Pas de reprise de mise en forme tierce** : tout le contenu rédactionnel est reformulé à partir des sources publiques et des documents notariés.
 
-Étapes de configuration (5 min, une fois) :
+## DataRoom — mot de passe
 
-1. Créer un Google Form sur le compte propriétaire (`forms.new`).
-2. Ajouter les champs correspondant aux noms du formulaire HTML : `prenom`, `nom`, `societe`, `fonction`, `email`, `telephone`, `profil`, `message`, `engagement_confidentialite`.
-3. Récupérer l'URL de soumission (`https://docs.google.com/forms/d/e/FORM_ID/formResponse`) et les identifiants `entry.XXXX` de chaque champ (Inspecteur navigateur).
-4. Mettre à jour `data-endpoint` dans `index.html` et la table de correspondance `entry.XXXX` dans `main.js` (à venir).
-5. Lier le Form à une Google Sheet pour collecter les soumissions.
+Mot de passe courant : `nouvelles-galeries-2026` (à communiquer manuellement aux acquéreurs identifiés). Pour changer le mot de passe, modifier la constante `PASS` dans `assets/main.js` (section 6).
 
-## Publication GitHub Pages
+## Carrousel d'accueil
+
+Sept slides en rotation automatique (6 s), navigation manuelle (flèches, dots, swipe tactile). Pause au hover. Photo de UNE : `assets/photos/hero/facade-cours-victor-hugo.jpg`.
+
+## Test local
 
 ```bash
 cd site
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-gh repo create vente-nouvelles-galeries-vsl --public --source=. --push
-gh repo edit --enable-pages --pages-branch main
+python -m http.server 8000
+# puis http://localhost:8000/
 ```
 
-Le site sera accessible à `https://benoitgaly.github.io/vente-nouvelles-galeries-vsl/`.
+## Publication GitHub Pages
 
-## Licence
+Le dépôt est déjà publié sur GitHub Pages :
 
-- Photographies et plans : propriété de la SARL JMG IMMOB.
-- DataRoom (titres, diagnostics, baux, mandat) : NON publiée — communiquée sur demande après engagement de confidentialité.
+```bash
+git add .
+git commit -m "Refonte multi-pages — annonce immobilière + carrousel + dataroom"
+git push
+```
+
+L'URL publique : https://benoitgaly.github.io/vente-nouvelles-galeries-vsl/
+
+## Licence et confidentialité
+
+- Photographies, plans, mémorandum : propriété de la SARL JMG IMMOB.
+- DataRoom (titres, diagnostics, baux, mandat) : communiquée sous engagement de confidentialité.
+- Aucune coordonnée personnelle ne figure publiquement sur le site (cf. règles internes JMG IMMOB).
