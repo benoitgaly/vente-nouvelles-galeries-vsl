@@ -6,7 +6,7 @@
    Retourne true en cas de succès, false en cas d'échec (→ fallback mailto).
    ========================================================================== */
 
-import { supabase, logAction } from './supabase-client.js';
+import { supabase, logAction } from './supabase-client.js?v=2';
 
 async function submitContactRequest(payload) {
   try {
