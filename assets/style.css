@@ -198,17 +198,18 @@ p { margin: 0 0 1rem; }
 
 .nav__menu {
   display: flex;
-  gap: 28px;
+  gap: 22px;
   align-items: center;
 }
 .nav__menu a {
   position: relative;
   color: var(--ink-soft);
-  font-size: .78rem;
+  font-size: .74rem;
   font-weight: 500;
-  letter-spacing: .14em;
+  letter-spacing: .12em;
   text-transform: uppercase;
   padding: 6px 0;
+  white-space: nowrap;
 }
 .nav__menu a::after {
   content: "";
@@ -230,13 +231,14 @@ p { margin: 0 0 1rem; }
 .nav__cta {
   background: var(--ink);
   color: var(--paper) !important;
-  padding: 11px 22px !important;
+  padding: 10px 18px !important;
   border: 1px solid var(--ink);
   border-radius: var(--radius);
-  font-size: .72rem !important;
-  letter-spacing: .18em !important;
+  font-size: .68rem !important;
+  letter-spacing: .14em !important;
   text-transform: uppercase;
   font-weight: 600;
+  white-space: nowrap;
   transition: background var(--t), color var(--t);
 }
 .nav__cta::after { display: none !important; }
@@ -711,6 +713,147 @@ header [class*="brand"] { white-space: nowrap; }
   line-height: 1.75;
 }
 
+/* ----------------------------- 7.5 GALLERIES PAR BÂTIMENT --------------- */
+.gallery-building__intro {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  max-width: 78ch;
+  margin-bottom: 32px;
+}
+.gallery-building__intro strong { color: var(--ink); font-weight: 600; }
+
+.gallery-building {
+  margin: 0 0 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-soft);
+}
+.gallery-building:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.gallery-building__header {
+  display: block;
+  margin-bottom: 22px;
+  padding-left: 18px;
+  border-left: 2px solid var(--gold);
+}
+
+.gallery-building__title {
+  font-family: 'Spectral', serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 8px;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.gallery-building__tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: .62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 4px 10px;
+  border-radius: var(--radius);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.gallery-building__tag--alt {
+  background: var(--bordeaux);
+  color: var(--paper);
+  border-color: var(--bordeaux);
+}
+
+.gallery-building__desc {
+  font-size: .94rem;
+  line-height: 1.7;
+  color: var(--ink-muted);
+  margin: 0;
+  max-width: 78ch;
+}
+.gallery-building__desc strong { color: var(--ink-soft); font-weight: 600; }
+
+.gallery-building__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.gallery-building__item {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: zoom-in;
+  overflow: hidden;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+.gallery-building__item:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: var(--shadow-sm);
+}
+.gallery-building__item:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.gallery-building__item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--t-slow);
+  filter: saturate(.96);
+}
+.gallery-building__item:hover img {
+  transform: scale(1.04);
+  filter: saturate(1);
+}
+
+.gallery-building__caption {
+  display: block;
+  padding: 10px 14px 12px;
+  font-size: .78rem;
+  color: var(--ink-soft);
+  letter-spacing: .02em;
+  line-height: 1.4;
+  text-align: left;
+  background: var(--paper);
+  border-top: 1px solid var(--border-soft);
+  position: relative;
+}
+.gallery-building__caption::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 14px;
+  width: 16px;
+  height: 1px;
+  background: var(--gold);
+}
+
+@media (max-width: 600px) {
+  .gallery-building__grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .gallery-building__caption { font-size: .72rem; padding: 8px 10px 10px; }
+}
+
 /* ----------------------------- 8. OFFRE -20% ---------------------------- */
 .offer {
   position: relative;
@@ -823,12 +966,12 @@ header [class*="brand"] { white-space: nowrap; }
 
 .offer__intro {
   font-size: 1rem;
-  color: rgba(250, 247, 240, .9);
+  color: rgba(250, 247, 240, .92);
   margin-bottom: 18px;
   max-width: 68ch;
   line-height: 1.7;
 }
-.offer__intro strong { color: var(--gold); font-weight: 600; }
+.offer__intro strong { color: var(--gold-soft); font-weight: 600; }
 
 .offer ol {
   margin: 0;
