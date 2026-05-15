@@ -30,7 +30,7 @@ site/
     ├── dataroom-auth.js     ← Auth magic link DataRoom + journalisation
     ├── admin.js             ← Back-office (demandes, utilisateurs, logs)
     ├── memorandum.pdf
-    ├── photos_v2/           ← Photos du site — source UNIQUE = DataRoom user
+    ├── photos/           ← Photos du site — source UNIQUE = DataRoom user
     │   ├── 8bis-8ter/       ← bâtiment principal (façade + vues rue + cadastre + 4 plans)
     │   ├── 10-cours/        ← immeuble annexe (façade pierre + intérieurs)
     │   └── villeneuve/      ← ambiance centre-bastide (allées Leygues, nouveau centre)
