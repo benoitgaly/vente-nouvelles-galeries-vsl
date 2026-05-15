@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /dataroom.html
+Disallow: /admin.html
+Disallow: /assets/dataroom/
+
+Sitemap: https://benoitgaly.github.io/vente-nouvelles-galeries-vsl/sitemap.xml
