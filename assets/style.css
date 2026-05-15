@@ -1058,7 +1058,7 @@ header [class*="brand"] { white-space: nowrap; }
   max-width: 68ch;
   line-height: 1.72;
 }
-.offer__intro strong { color: var(--gold-soft); font-weight: 600; }
+.offer__intro strong { color: #e8c98e; font-weight: 700; }
 
 .offer ol {
   margin: 0;
@@ -1103,7 +1103,7 @@ header [class*="brand"] { white-space: nowrap; }
   line-height: 1.65;
   max-width: 76ch;
 }
-.offer__fine strong { color: rgba(250, 245, 233, .85); font-style: normal; font-weight: 500; }
+.offer__fine strong { color: #e8c98e; font-style: normal; font-weight: 700; }
 
 @media (max-width: 720px) {
   .offer { padding: 38px 28px 32px; }
