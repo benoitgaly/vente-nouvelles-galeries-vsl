@@ -2091,6 +2091,17 @@ header [class*="brand"] { white-space: nowrap; }
   text-align: center;
   overflow: hidden;
 }
+/* Question-titre : "Sans clause suspensive ?" — question accrocheuse
+   au-dessus du chiffre choc -20 %, en serif italique or pâle. */
+.prix-offer__question {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  font-weight: 500;
+  color: var(--gold-soft);
+  line-height: 1.25;
+  margin-bottom: .65rem;
+}
 .prix-offer__big {
   font-family: 'Spectral', serif;
   font-size: clamp(2.4rem, 4vw, 3rem);
@@ -2144,18 +2155,9 @@ header [class*="brand"] { white-space: nowrap; }
   border-top: 1px solid rgba(184, 134, 46, .3);
   font-size: .95rem;
   line-height: 1.65;
-  color: rgba(250, 245, 233, .9);
+  color: var(--paper);
+  font-weight: 400;
   max-width: none;
-}
-/* Strong en or doré pâle pour MAXIMISER la visibilité — cohérent avec
-   la couleur du prix 280 000 € au-dessus. */
-.prix-offer .prix-offer__terms strong {
-  color: #f3d68c;
-  font-weight: 700;
-}
-/* "sans clause suspensive" : +4px par rapport au reste pour saillance */
-.prix-offer .prix-offer__terms .prix-offer__keyword {
-  font-size: calc(.95rem + 4px);
 }
 
 @media (max-width: 840px) {
