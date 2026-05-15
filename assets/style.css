@@ -1988,6 +1988,51 @@ header [class*="brand"] { white-space: nowrap; }
   color: var(--ink-soft);
 }
 
+/* Titre accroche "Cession rapide" : barre terracotta verticale épaisse +
+   serif terra-deep. Rappelle visuellement le contexte de la vente
+   succession et précède le paragraphe explicatif. */
+.prix__rapid-title {
+  font-family: 'Spectral', serif;
+  font-size: clamp(1.3rem, 2.2vw, 1.55rem);
+  font-weight: 600;
+  color: var(--terra-deep);
+  letter-spacing: -.005em;
+  line-height: 1.1;
+  margin: 1.4rem 0 .65rem;
+  padding: .2rem 0 .25rem .85rem;
+  position: relative;
+}
+.prix__rapid-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--terra) 0%, var(--gold) 100%);
+  border-radius: 2px;
+}
+
+/* 4e ligne timeline — valorisation latente (non chiffrée) liée à la
+   fin du réaménagement du centre-ville. Différenciation subtile :
+   le "montant" devient un libellé italique gold-deep au lieu d'un € chiffre. */
+.prix-step--bonus .prix-step__year {
+  color: var(--olive);
+}
+.prix-step--bonus .prix-step__amount {
+  font-family: 'Inter', sans-serif;
+  font-size: .9rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--olive);
+  letter-spacing: 0;
+}
+.prix-step--bonus .prix-step__desc em {
+  color: var(--ink-muted);
+  font-style: italic;
+  font-size: .88rem;
+}
+
 /* Référence du propriétaire — encart graphique mettant en avant le track
    record du vendeur (magasin équivalent cédé 600 000 € par le même
    propriétaire). Argument commercial fort, donc bandeau bien marqué :
@@ -2090,16 +2135,18 @@ header [class*="brand"] { white-space: nowrap; }
   color: rgba(243, 214, 140, .92);
   margin-bottom: 1rem;
 }
-.prix-offer__terms {
+/* Spécificité augmentée (.prix-offer .prix-offer__terms = 0,2,0) pour
+   battre .block p (0,1,1) qui mettait le texte normal et les <strong>
+   en var(--ink-soft) / var(--ink), donc en bleu sur fond bleu. */
+.prix-offer .prix-offer__terms {
   margin: 0;
   padding-top: 1rem;
   border-top: 1px solid rgba(184, 134, 46, .3);
   font-size: .94rem;
   line-height: 1.6;
   color: rgba(250, 245, 233, .94);
+  max-width: none;
 }
-/* Spécificité augmentée pour battre .block p strong (qui mettait les
-   <strong> en var(--ink) = même couleur que le fond bleu nuit). */
 .prix-offer .prix-offer__terms strong {
   color: var(--paper);
   font-weight: 600;
