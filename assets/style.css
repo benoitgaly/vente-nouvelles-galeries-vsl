@@ -2139,9 +2139,9 @@ header [class*="brand"] { white-space: nowrap; }
 }
 .prix-offer__sub {
   font-family: 'Inter', sans-serif;
-  font-size: .72rem;
+  font-size: calc(.72rem + 4px); /* +4px vs eyebrow standard */
   font-weight: 600;
-  letter-spacing: .22em;
+  letter-spacing: .18em; /* légère détente vs .22em pour rester lisible plus gros */
   text-transform: uppercase;
   color: rgba(243, 214, 140, .92);
   margin-bottom: 1rem;
