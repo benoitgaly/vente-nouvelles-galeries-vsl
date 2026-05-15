@@ -21,6 +21,7 @@
     </a>
     <nav class="nav__menu" aria-label="Menu">
       <a href="#photos">Photos</a>
+      <a href="#photos-par-batiment">Photos par bâtiment</a>
       <a href="#description">Description</a>
       <a href="#caracteristiques">Caractéristiques</a>
       <a href="#localisation">Localisation</a>
@@ -34,7 +35,9 @@
 </header>
 
 <!-- ============================== CARROUSEL ============================ -->
-<section class="carousel" id="photos" aria-label="Photos du bien">
+<!-- Vue d'ensemble du bien (6 photos). Les photos détaillées par bâtiment
+     sont présentées plus bas dans la section #photos-par-batiment. -->
+<section class="carousel" id="photos" aria-label="Vue d'ensemble du bien">
   <div class="carousel__viewport">
     <div class="carousel__track">
       <div class="carousel__slide">
@@ -47,48 +50,20 @@
              alt="Vue de rue large — bâtiment principal et immeuble annexe 10 Cours Victor Hugo">
       </div>
       <div class="carousel__slide">
+        <img src="assets/photos_v2/plans/plan-cadastral.jpg"
+             alt="Plan cadastral — 4 parcelles EV 8 / 9 / 20 / 21, double façade Cours Victor Hugo / rue Bernard Palissy">
+      </div>
+      <div class="carousel__slide">
         <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/rdc/8bis-rdc-02-piece-lambris-bleu.jpg"
              alt="Rez-de-chaussée commercial — vaste pièce à lambris bleu, ex-magasin">
-      </div>
-      <div class="carousel__slide">
-        <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/rdc/8bis-rdc-03-piece-vers-escalier.jpg"
-             alt="Rez-de-chaussée — pièce ouverte sur escaliers vers sous-sol et étage">
-      </div>
-      <div class="carousel__slide">
-        <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/sous-sol/8bis-sous-sol-01-escalier-descente.jpg"
-             alt="Accès au sous-sol commercial de 731 m²">
       </div>
       <div class="carousel__slide">
         <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/cour/8bis-cour-01-patio-vegetation.jpg"
              alt="Cour intérieure — patio végétalisé entre les bâtiments traversants">
       </div>
       <div class="carousel__slide">
-        <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/r1/8bis-r1-01-piece-bureau-faux-plafond.jpg"
-             alt="Étage R+1 — pièce de bureau / réserve">
-      </div>
-      <div class="carousel__slide">
-        <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/r1/8bis-r1-02-piece-cheminee-muree.jpg"
-             alt="Étage R+1 — pièce ancienne avec cheminée murée">
-      </div>
-      <div class="carousel__slide">
-        <img src="assets/photos_v2/appartement-t2/t2-01-piece-balcon-vue-cours.jpg"
-             alt="Appartement T2 loué — pièce de vie donnant sur le Cours Victor Hugo">
-      </div>
-      <div class="carousel__slide">
-        <img src="assets/photos_v2/appartement-t2/t2-04-chambre-fenetre.jpg"
-             alt="Appartement T2 loué — chambre rénovée">
-      </div>
-      <div class="carousel__slide">
-        <img src="assets/photos_v2/appartement-t2/t2-06-combles-velux-poutre.jpg"
-             alt="Appartement T2 — combles avec poutre apparente et velux">
-      </div>
-      <div class="carousel__slide">
-        <img src="assets/photos_v2/10-cours-victor-hugo/interieur/10-cours-interieur-03-escalier-balustres.jpg"
-             alt="10 Cours Victor Hugo — escalier d'origine balustres tournés XIXe">
-      </div>
-      <div class="carousel__slide">
-        <img src="assets/photos_v2/plans/plan-cadastral.jpg"
-             alt="Plan cadastral — 4 parcelles EV 8 / 9 / 20 / 21">
+        <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/sous-sol/8bis-sous-sol-01-escalier-descente.jpg"
+             alt="Accès au sous-sol commercial de 731 m²">
       </div>
     </div>
 
@@ -98,7 +73,7 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
       Plein écran
     </button>
-    <span class="carousel__counter">1 / 13</span>
+    <span class="carousel__counter">1 / 6</span>
     <div class="carousel__dots" aria-hidden="true"></div>
   </div>
 </section>
@@ -167,6 +142,153 @@
     <p>
       <strong>Validation du marché.</strong> Le bien a fait l'objet en 2020 d'une <strong>négociation avancée avec un opérateur national de résidence services seniors</strong> (acquéreur identifié, mais identité non divulguée à ce stade) au prix de <strong>≈ 335 000 € net vendeur</strong>. L'opération n'avait pas abouti à l'époque pour une question technique de mitoyenneté qui a depuis été résolue (acquisition en 2021 de l'immeuble adjacent du 10 Cours Victor Hugo, scellant la continuité foncière). À 350 000 € net vendeur — et a fortiori 280 000 € sous conditions — le prix actuel est cohérent avec ce référentiel.
     </p>
+  </section>
+
+  <!-- ===================== PHOTOS PAR BÂTIMENT ====================== -->
+  <section class="block" id="photos-par-batiment">
+    <h2>
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+      Photos par bâtiment
+    </h2>
+    <p class="gallery-building__intro">
+      L'ensemble immobilier regroupe <strong>trois entités distinctes</strong> sur quatre parcelles cadastrales contiguës. Les photos ci-dessous sont organisées par bâtiment pour permettre une lecture précise du bien. Cliquez sur une vignette pour l'agrandir.
+    </p>
+
+    <!-- Galerie 1 : 8 bis / 8 ter Cours Victor Hugo -->
+    <article class="gallery-building" data-gallery="8bis">
+      <header class="gallery-building__header">
+        <h3 class="gallery-building__title">8 bis &amp; 8 ter Cours Victor Hugo — l'ancien magasin <span class="gallery-building__tag">cœur du bien</span></h3>
+        <p class="gallery-building__desc">
+          Le grand magasin « Nouvelles Galeries » : façade rose pâle R+2 sur sous-sol, 895 m² au RDC, 731 m² de sous-sol commercial, cour intérieure traversante, étages à reconvertir. C'est l'élément structurant de la vente (parcelles EV 8 + EV 20 + EV 21).
+        </p>
+      </header>
+      <div class="gallery-building__grid">
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/exterieur/8bis-exterieur-01-facade-cours-victor-hugo.jpg" data-alt="8 bis Cours Victor Hugo — façade principale rose pâle, R+2 sur sous-sol, vitrines RDC alignées">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/exterieur/8bis-exterieur-01-facade-cours-victor-hugo.jpg" alt="Façade principale rose pâle du 8 bis / 8 ter Cours Victor Hugo" loading="lazy">
+          <span class="gallery-building__caption">Extérieur — façade Cours Victor Hugo</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/exterieur/8bis-exterieur-02-vue-rue-large.jpg" data-alt="Vue de rue large — contexte commerçant, immeuble annexe du 10 Cours visible à gauche, Carrefour City à droite">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/exterieur/8bis-exterieur-02-vue-rue-large.jpg" alt="Vue de rue large du Cours Victor Hugo avec le bâtiment principal et l'annexe" loading="lazy">
+          <span class="gallery-building__caption">Extérieur — vue de rue large</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/rdc/8bis-rdc-01-couloir-acces.jpg" data-alt="Rez-de-chaussée — couloir d'accès arrière, encadrement de porte vert d'eau, faux plafond éclairé">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/rdc/8bis-rdc-01-couloir-acces.jpg" alt="RDC — couloir d'accès arrière du magasin" loading="lazy">
+          <span class="gallery-building__caption">RDC — couloir d'accès</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/rdc/8bis-rdc-02-piece-lambris-bleu.jpg" data-alt="Rez-de-chaussée — grande pièce arrière-boutique avec lambris bleu mi-hauteur">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/rdc/8bis-rdc-02-piece-lambris-bleu.jpg" alt="RDC — pièce à lambris bleu ex-magasin" loading="lazy">
+          <span class="gallery-building__caption">RDC — pièce à lambris bleu</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/rdc/8bis-rdc-03-piece-vers-escalier.jpg" data-alt="Rez-de-chaussée — pièce ouverte sur les escaliers vers étage et sous-sol">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/rdc/8bis-rdc-03-piece-vers-escalier.jpg" alt="RDC — pièce ouverte sur escaliers" loading="lazy">
+          <span class="gallery-building__caption">RDC — pièce vers escalier</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/rdc/8bis-rdc-04-local-arriere-vers-cour.jpg" data-alt="Rez-de-chaussée — local arrière (ancien vestiaire) donnant sur la cour intérieure">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/rdc/8bis-rdc-04-local-arriere-vers-cour.jpg" alt="RDC — local arrière donnant sur la cour" loading="lazy">
+          <span class="gallery-building__caption">RDC — local arrière vers cour</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/rdc/8bis-rdc-05-escalier-vers-etage.jpg" data-alt="Rez-de-chaussée — escalier moderne rénové vers le R+1">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/rdc/8bis-rdc-05-escalier-vers-etage.jpg" alt="RDC — escalier rénové vers étage" loading="lazy">
+          <span class="gallery-building__caption">RDC — escalier vers étage</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/r1/8bis-r1-01-piece-bureau-faux-plafond.jpg" data-alt="R+1 — pièce de bureau / réserve avec faux plafond suspendu et parquet stratifié clair">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/r1/8bis-r1-01-piece-bureau-faux-plafond.jpg" alt="R+1 — pièce de bureau avec faux plafond" loading="lazy">
+          <span class="gallery-building__caption">R+1 — pièce de bureau</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/r1/8bis-r1-02-piece-cheminee-muree.jpg" data-alt="R+1 — pièce ancienne avec cheminée murée et porte-fenêtre">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/r1/8bis-r1-02-piece-cheminee-muree.jpg" alt="R+1 — pièce avec cheminée murée" loading="lazy">
+          <span class="gallery-building__caption">R+1 — pièce à cheminée</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/r1/8bis-r1-03-piece-vide-stratifie.jpg" data-alt="R+1 — pièce vide avec stratifié récent, deux portes (une ancienne crème, une moderne)">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/r1/8bis-r1-03-piece-vide-stratifie.jpg" alt="R+1 — pièce vide stratifiée" loading="lazy">
+          <span class="gallery-building__caption">R+1 — pièce vide</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/r1/8bis-r1-04-piece-placard-integre.jpg" data-alt="R+1 — pièce avec placard intégré ancien bois crème et porte moulurée">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/r1/8bis-r1-04-piece-placard-integre.jpg" alt="R+1 — pièce avec placard intégré" loading="lazy">
+          <span class="gallery-building__caption">R+1 — pièce avec placard</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/sous-sol/8bis-sous-sol-01-escalier-descente.jpg" data-alt="Sous-sol — escalier de descente vers le sous-sol commercial de 731 m²">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/sous-sol/8bis-sous-sol-01-escalier-descente.jpg" alt="Sous-sol — accès escalier" loading="lazy">
+          <span class="gallery-building__caption">Sous-sol — accès</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/8bis-8ter-cours-victor-hugo/cour/8bis-cour-01-patio-vegetation.jpg" data-alt="Cour intérieure — patio végétalisé entre les bâtiments, mur de pierre épais">
+          <img src="assets/photos_v2/8bis-8ter-cours-victor-hugo/cour/8bis-cour-01-patio-vegetation.jpg" alt="Cour intérieure — patio végétalisé" loading="lazy">
+          <span class="gallery-building__caption">Cour — patio végétalisé</span>
+        </button>
+      </div>
+    </article>
+
+    <!-- Galerie 2 : 10 Cours Victor Hugo -->
+    <article class="gallery-building" data-gallery="10cours">
+      <header class="gallery-building__header">
+        <h3 class="gallery-building__title">10 Cours Victor Hugo — immeuble annexe en pierre</h3>
+        <p class="gallery-building__desc">
+          Petit immeuble d'habitation acquis en 2021 (ex-SCI Boulard), façade pierre étroite, balcons fer forgé bleus, escaliers d'origine à balustres tournés. Parcelle EV 9 (81 m²), continuité foncière avec le bâtiment principal.
+        </p>
+      </header>
+      <div class="gallery-building__grid">
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/10-cours-victor-hugo/interieur/10-cours-interieur-01-couloir-escalier.jpg" data-alt="10 Cours Victor Hugo — couloir étroit avec marches et main courante peinte blanc, pilastre tourné vintage">
+          <img src="assets/photos_v2/10-cours-victor-hugo/interieur/10-cours-interieur-01-couloir-escalier.jpg" alt="10 Cours — couloir et marches" loading="lazy">
+          <span class="gallery-building__caption">Couloir et escalier</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/10-cours-victor-hugo/interieur/10-cours-interieur-02-palier-vers-pieces.jpg" data-alt="10 Cours Victor Hugo — palier avec rampe balustres tournés blancs, papier peint vieilli">
+          <img src="assets/photos_v2/10-cours-victor-hugo/interieur/10-cours-interieur-02-palier-vers-pieces.jpg" alt="10 Cours — palier vers les pièces" loading="lazy">
+          <span class="gallery-building__caption">Palier vers les pièces</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/10-cours-victor-hugo/interieur/10-cours-interieur-03-escalier-balustres.jpg" data-alt="10 Cours Victor Hugo — escalier en bois peint blanc, balustres tournés XIXe, plafond haut">
+          <img src="assets/photos_v2/10-cours-victor-hugo/interieur/10-cours-interieur-03-escalier-balustres.jpg" alt="10 Cours — escalier à balustres XIXe" loading="lazy">
+          <span class="gallery-building__caption">Escalier à balustres XIXe</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/10-cours-victor-hugo/interieur/10-cours-interieur-04-palier-rampe.jpg" data-alt="10 Cours Victor Hugo — palier d'escalier avec rampe à balustres blancs, pièce attenante">
+          <img src="assets/photos_v2/10-cours-victor-hugo/interieur/10-cours-interieur-04-palier-rampe.jpg" alt="10 Cours — palier avec rampe" loading="lazy">
+          <span class="gallery-building__caption">Palier avec rampe</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/10-cours-victor-hugo/interieur/10-cours-interieur-05-couloir-vers-piece.jpg" data-alt="10 Cours Victor Hugo — palier haut avec vue sur pièce donnant sur les bâtiments d'en face">
+          <img src="assets/photos_v2/10-cours-victor-hugo/interieur/10-cours-interieur-05-couloir-vers-piece.jpg" alt="10 Cours — palier haut" loading="lazy">
+          <span class="gallery-building__caption">Palier haut</span>
+        </button>
+      </div>
+    </article>
+
+    <!-- Galerie 3 : Appartement T2 -->
+    <article class="gallery-building" data-gallery="t2">
+      <header class="gallery-building__header">
+        <h3 class="gallery-building__title">Appartement T2 — lots 5/6 <span class="gallery-building__tag gallery-building__tag--alt">loué</span></h3>
+        <p class="gallery-building__desc">
+          T2 de <strong>58,73 m² Carrez</strong> + 5,24 m² hors Carrez, situé physiquement dans l'immeuble du 8 bis. Loué <strong>368,59 €/mois CC</strong> (bail 2018 reconduit tacitement, gestion Foncia Montauban). Photos prises en cours de rénovation — DPE E (2023).
+        </p>
+      </header>
+      <div class="gallery-building__grid">
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/appartement-t2/t2-01-piece-balcon-vue-cours.jpg" data-alt="Appartement T2 — pièce de vie avec porte-fenêtre donnant sur le Cours Victor Hugo, parquet stratifié récent">
+          <img src="assets/photos_v2/appartement-t2/t2-01-piece-balcon-vue-cours.jpg" alt="T2 — pièce de vie vue Cours" loading="lazy">
+          <span class="gallery-building__caption">Pièce de vie — vue Cours</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/appartement-t2/t2-02-cuisine-arrivees-eau.jpg" data-alt="Appartement T2 — future cuisine avec arrivées d'eau et eaux usées, en cours d'aménagement">
+          <img src="assets/photos_v2/appartement-t2/t2-02-cuisine-arrivees-eau.jpg" alt="T2 — cuisine en cours" loading="lazy">
+          <span class="gallery-building__caption">Cuisine — arrivées d'eau</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/appartement-t2/t2-03-cuisine-rail-coulissant.jpg" data-alt="Appartement T2 — pièce avec rail de porte coulissante et arrivée d'eau, stratifié récent">
+          <img src="assets/photos_v2/appartement-t2/t2-03-cuisine-rail-coulissant.jpg" alt="T2 — cuisine avec rail coulissant" loading="lazy">
+          <span class="gallery-building__caption">Cuisine — rail coulissant</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/appartement-t2/t2-04-chambre-fenetre.jpg" data-alt="Appartement T2 — chambre rénovée avec fenêtre et rideau, parquet stratifié">
+          <img src="assets/photos_v2/appartement-t2/t2-04-chambre-fenetre.jpg" alt="T2 — chambre rénovée" loading="lazy">
+          <span class="gallery-building__caption">Chambre</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/appartement-t2/t2-05-escalier-vers-combles.jpg" data-alt="Appartement T2 — escalier moderne peint blanc montant aux combles, poutre peinte bordeaux">
+          <img src="assets/photos_v2/appartement-t2/t2-05-escalier-vers-combles.jpg" alt="T2 — escalier vers combles" loading="lazy">
+          <span class="gallery-building__caption">Escalier vers combles</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/appartement-t2/t2-06-combles-velux-poutre.jpg" data-alt="Appartement T2 — pièce sous comble avec poutre bordeaux apparente, velux et plinthe bordeaux">
+          <img src="assets/photos_v2/appartement-t2/t2-06-combles-velux-poutre.jpg" alt="T2 — combles poutre apparente" loading="lazy">
+          <span class="gallery-building__caption">Combles — poutre apparente</span>
+        </button>
+        <button class="gallery-building__item" type="button" data-src="assets/photos_v2/appartement-t2/t2-07-alcove-rose-velux.jpg" data-alt="Appartement T2 — alcôve sous rampant peinte fuchsia avec velux">
+          <img src="assets/photos_v2/appartement-t2/t2-07-alcove-rose-velux.jpg" alt="T2 — alcôve rose sous velux" loading="lazy">
+          <span class="gallery-building__caption">Alcôve sous velux</span>
+        </button>
+      </div>
+    </article>
   </section>
 
   <!-- Offre 280 000 € -->
@@ -364,7 +486,7 @@
     <img class="lightbox__img" src="" alt="">
   </div>
   <button class="lightbox__btn lightbox__btn--next" aria-label="Photo suivante">›</button>
-  <span class="lightbox__counter">1 / 13</span>
+  <span class="lightbox__counter">1 / 6</span>
   <div class="lightbox__caption"></div>
 </div>
 

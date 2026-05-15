@@ -28,6 +28,7 @@
   /* ---------------------- 2. LIGHTBOX (init avant carrousel) -------- */
   const lightbox = $('#lightbox');
   let openLightbox = () => {}; // no-op par défaut
+  let openLightboxWith = () => {}; // ouvre avec une liste de sources spécifique (galeries par bâtiment)
   let lbSources = [];
 
   if (lightbox) {
@@ -38,18 +39,29 @@
     const lbNext    = $('.lightbox__btn--next', lightbox);
     const lbClose   = $('.lightbox__close', lightbox);
     let lbIdx = 0;
+    let lbCurrent = null; // liste de sources en cours (carrousel principal ou galerie spécifique)
 
     function showLb(i) {
-      if (!lbSources.length) return;
-      lbIdx = ((i % lbSources.length) + lbSources.length) % lbSources.length;
-      const item = lbSources[lbIdx];
+      const list = lbCurrent || lbSources;
+      if (!list.length) return;
+      lbIdx = ((i % list.length) + list.length) % list.length;
+      const item = list[lbIdx];
       lbImg.src = item.src;
       lbImg.alt = item.alt;
-      if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbSources.length;
+      if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + list.length;
       if (lbCaption) lbCaption.textContent = item.alt;
     }
 
     openLightbox = function (i) {
+      lbCurrent = lbSources;
+      showLb(i || 0);
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    openLightboxWith = function (sources, i) {
+      if (!sources || !sources.length) return;
+      lbCurrent = sources;
       showLb(i || 0);
       lightbox.classList.add('is-open');
       document.body.style.overflow = 'hidden';
@@ -165,6 +177,22 @@
 
     update();
   }
+
+  /* ---------------------- 3bis. GALERIES PAR BÂTIMENT --------------- */
+  // Chaque .gallery-building contient ses propres .gallery-building__item
+  // qui exposent data-src + data-alt. La lightbox est réutilisée, mais
+  // navigue uniquement à l'intérieur de la galerie cliquée.
+  $$('.gallery-building').forEach((gallery) => {
+    const items = $$('.gallery-building__item', gallery);
+    if (!items.length) return;
+    const sources = items.map((it) => ({
+      src: it.getAttribute('data-src') || (it.querySelector('img') && it.querySelector('img').getAttribute('src')) || '',
+      alt: it.getAttribute('data-alt') || (it.querySelector('img') && it.querySelector('img').getAttribute('alt')) || '',
+    }));
+    items.forEach((it, i) => {
+      it.addEventListener('click', () => openLightboxWith(sources, i));
+    });
+  });
 
   /* ---------------------- 4. FORMULAIRE CONTACT --------------------- */
   const form = $('#contact-form');
