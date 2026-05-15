@@ -30,40 +30,26 @@ site/
     ├── dataroom-auth.js     ← Auth magic link DataRoom + journalisation
     ├── admin.js             ← Back-office (demandes, utilisateurs, logs)
     ├── memorandum.pdf
-    ├── plans/
-    ├── photos_v2/           ← Photos classées par bâtiment / niveau
-    │   ├── 8bis-8ter-cours-victor-hugo/
-    │   │   ├── exterieur/   ← façade Cours V. Hugo, vue large rue
-    │   │   ├── rdc/         ← magasin RDC
-    │   │   ├── r1/          ← étage R+1
-    │   │   ├── r2/
-    │   │   ├── sous-sol/
-    │   │   └── cour/        ← patio intérieur
-    │   ├── 10-cours-victor-hugo/ ← immeuble annexe pierre
-    │   ├── appartement-t2/  ← appartement loué
-    │   ├── plans/
-    │   ├── archives-notariales/  ← clés, internes, non utilisés
-    │   └── _a_valider/
+    ├── photos_v2/           ← Photos du site — source UNIQUE = DataRoom user
+    │   ├── 8bis-8ter/       ← bâtiment principal (façade + vues rue + cadastre + 4 plans)
+    │   ├── 10-cours/        ← immeuble annexe (façade pierre + intérieurs)
+    │   └── villeneuve/      ← ambiance centre-bastide (allées Leygues, nouveau centre)
     └── dataroom/            ← PDF DataRoom (mémo, actes, diags, fiscalité, mandat)
 ```
 
-## Photos utilisées sur l'annonce (13 slides)
+## Photos utilisées sur l'annonce
 
-Toutes issues du classement validé dans `_inventaire_photos.md`. Aucune photo de Marmande, aucune photo de clés notariales. Seules les photos classées **pertinence = OUI** et **bâtiment ∈ {8 bis/ter, 10 Cours, T2}** sont utilisées.
+Source UNIQUE : `DataRoom/07_Photos_et_visite/` (3 dossiers user). Aucune photo inventée, fabriquée ou reprise d'autres sources. Pas de galerie T2 (pas de dossier source T2 ; le T2 reste mentionné dans le texte et visible sur demande après accès DataRoom).
 
-1. Façade Cours Victor Hugo (8 bis/ter) — `8bis-exterieur-01-facade-cours-victor-hugo.jpg`
-2. Vue de rue large avec 10 Cours — `8bis-exterieur-02-vue-rue-large.jpg`
-3. Pièce RDC à lambris bleu — `8bis-rdc-02-piece-lambris-bleu.jpg`
-4. Pièce RDC vers escalier — `8bis-rdc-03-piece-vers-escalier.jpg`
-5. Escalier vers sous-sol 731 m² — `8bis-sous-sol-01-escalier-descente.jpg`
-6. Patio cour intérieure — `8bis-cour-01-patio-vegetation.jpg`
-7. Pièce R+1 bureau — `8bis-r1-01-piece-bureau-faux-plafond.jpg`
-8. Pièce R+1 cheminée murée — `8bis-r1-02-piece-cheminee-muree.jpg`
-9. Appartement T2 — pièce sur Cours — `t2-01-piece-balcon-vue-cours.jpg`
-10. Appartement T2 — chambre — `t2-04-chambre-fenetre.jpg`
-11. Appartement T2 — combles — `t2-06-combles-velux-poutre.jpg`
-12. 10 Cours — escalier balustres XIXe — `10-cours-interieur-03-escalier-balustres.jpg`
-13. Plan cadastral 4 parcelles — `plan-cadastral.jpg`
+**Carrousel (6 slides)** : 5 photos `8bis-8ter/` + 1 photo `10-cours/Extérieur.jpg`.
+
+**Galerie 8 bis & 8 ter (5 photos)** : façade user, façade piétonne, vue aérienne emprise, vue de rue, plan cadastral.
+
+**Galerie 10 Cours Victor Hugo (12 photos)** : façade pierre + balustres + cage d'escalier + cour + placard intégré + balcon fer forgé + combles + alcôve + pièces et accès sous-sol. Reportage complet (24 vues) en DataRoom.
+
+**Section Plans par niveau (4 plans haute qualité)** : Sous-sol, RDC, R+1, R+2 — issus des 4 PNG fournis par le user dans `8bis-8ter/plan-*.jpg`.
+
+**Section ambiance Villeneuve (2 photos)** : allées Georges-Leygues + Nouveau centre.
 
 ## Intégration Supabase
 
