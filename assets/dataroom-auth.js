@@ -2,7 +2,7 @@
    DataRoom — authentification Supabase (magic link) + journalisation
    ========================================================================== */
 
-import { supabase, getCurrentUser, logAction } from './supabase-client.js?v=2';
+import { supabase, getCurrentUser, logAction } from './supabase-client.js?v=3';
 
 (async function init() {
   const gate          = document.getElementById('dataroom-gate');

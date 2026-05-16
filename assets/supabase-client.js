@@ -20,7 +20,12 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     persistSession: true,
     autoRefreshToken: true,
     detectSessionInUrl: true,
-    flowType: 'pkce',
+    // implicit (au lieu de pkce) : permet aux magic links générés par l'admin API
+    // (Edge Function approve-contact) de logger l'user en 1 clic sans saisir d'email.
+    // Le token est en clair dans le hash de l'URL au moment du redirect, donc
+    // marginalement moins sécurisé que PKCE — acceptable pour notre use case
+    // (acquéreurs sous engagement de confidentialité). Le clic = accès direct.
+    flowType: 'implicit',
   },
 });
 
