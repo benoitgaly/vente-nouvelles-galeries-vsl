@@ -258,7 +258,7 @@
         const ok = await window.__ngSupabase.submitContactRequest(payload);
         if (ok) {
           form.reset();
-          showMsg('Votre demande a bien été enregistrée. Le mandataire reviendra vers vous sous 24 h ouvrées avec les accès à la DataRoom.', 'ok');
+          showMsg('Votre demande a bien été enregistrée. Un accusé de réception vient de vous être envoyé — pensez à vérifier votre dossier indésirables (spam) s\'il n\'apparaît pas dans la boîte de réception. Le mandataire reviendra vers vous sous 24 h ouvrées avec les accès à la DataRoom.', 'ok');
           if (msgEl) msgEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
           showMsg('Votre demande n\'a pas pu être enregistrée. Merci de réessayer dans quelques minutes.', 'error');
