@@ -85,7 +85,7 @@
     </div>
 
     <!-- 01 Mémorandum -->
-    <section class="dr-cat">
+    <section class="dr-cat" data-num="01">
       <h3>Mémorandum <small>01 — Dossier de présentation</small></h3>
       <div class="dr-list">
         <a class="dr-item dr-doc" href="assets/dataroom/01_Memorandum.pdf" target="_blank" rel="noopener" data-doc-label="Mémorandum d'investissement">
@@ -100,7 +100,7 @@
     </section>
 
     <!-- 02 Cadastre -->
-    <section class="dr-cat">
+    <section class="dr-cat" data-num="02">
       <h3>Identification &amp; cadastre <small>02</small></h3>
       <div class="dr-list">
         <a class="dr-item dr-doc" href="assets/dataroom/02_Cadastre.pdf" target="_blank" rel="noopener" data-doc-label="Extrait cadastral">
@@ -115,7 +115,7 @@
     </section>
 
     <!-- 03 Titres -->
-    <section class="dr-cat">
+    <section class="dr-cat" data-num="03">
       <h3>Titres de propriété <small>03 — Actes notariés</small></h3>
       <div class="dr-list">
         <a class="dr-item dr-doc" href="assets/dataroom/03_Acte_2018_8bis-8ter_Cours_Victor_Hugo.pdf" target="_blank" rel="noopener" data-doc-label="Acte 2018 — 8 bis/ter Cours Victor Hugo">
@@ -134,7 +134,7 @@
     </section>
 
     <!-- 04 Diagnostics -->
-    <section class="dr-cat">
+    <section class="dr-cat" data-num="04">
       <h3>Diagnostics techniques <small>04</small></h3>
       <div class="dr-list">
         <a class="dr-item dr-doc" href="assets/dataroom/04_Diagnostics_2018.pdf" target="_blank" rel="noopener" data-doc-label="Diagnostics 2018">
@@ -153,7 +153,7 @@
     </section>
 
     <!-- 06 Locatif -->
-    <section class="dr-cat">
+    <section class="dr-cat" data-num="06">
       <h3>Situation locative <small>06</small></h3>
       <div class="dr-list">
         <a class="dr-item dr-doc" href="assets/dataroom/06_Bail_derogatoire_RDC.pdf" target="_blank" rel="noopener" data-doc-label="Bail dérogatoire RDC">
@@ -164,7 +164,7 @@
     </section>
 
     <!-- 08 Mandat -->
-    <section class="dr-cat">
+    <section class="dr-cat" data-num="08">
       <h3>Pouvoirs du signataire <small>08</small></h3>
       <div class="dr-list">
         <a class="dr-item dr-doc" href="assets/dataroom/08_Mandat_vente_interet_commun.docx" target="_blank" rel="noopener" data-doc-label="Mandat de vente d'intérêt commun">
@@ -175,16 +175,12 @@
     </section>
 
     <!-- 09 Fiscalité -->
-    <section class="dr-cat">
+    <section class="dr-cat" data-num="09">
       <h3>Fiscalité <small>09</small></h3>
       <div class="dr-list">
         <a class="dr-item dr-doc" href="assets/dataroom/09_Avis_taxe_fonciere_2024.pdf" target="_blank" rel="noopener" data-doc-label="Avis taxe foncière 2024">
           <span class="dr-item__icon">PDF</span>
           <span><span class="dr-item__title">Avis de taxe foncière 2024</span><span class="dr-item__meta">≈ 18 700 €</span></span>
-        </a>
-        <a class="dr-item dr-doc" href="assets/dataroom/09_Taxe_fonciere_2017.pdf" target="_blank" rel="noopener" data-doc-label="Taxe foncière 2017">
-          <span class="dr-item__icon">PDF</span>
-          <span><span class="dr-item__title">Taxe foncière 2017</span><span class="dr-item__meta">Historique</span></span>
         </a>
       </div>
     </section>
@@ -207,20 +203,16 @@
 </footer>
 
 <style>
-  /* petits ajustements spécifiques à la dataroom */
+  /* État affichage gate / content / loader */
   .dr-page.is-hidden, .gate.is-hidden, .dr-loading.is-hidden { display: none !important; }
   .is-open { display: block; }
 
-  /* Loader de transition pour éviter le flash gate→content au login */
+  /* ──── Loader de transition (évite flash gate→content au login) ──── */
   .dr-loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-    padding: 60px 20px;
-    text-align: center;
-    color: var(--ink-muted, #6b6b6b);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 60vh; padding: 60px 20px;
+    text-align: center; color: var(--ink-muted, #6b6b6b);
   }
   .dr-loading__spinner {
     width: 36px; height: 36px;
@@ -232,6 +224,145 @@
   }
   .dr-loading__label { margin: 0; font-size: .95rem; letter-spacing: .02em; }
   @keyframes dr-spin { to { transform: rotate(360deg); } }
+
+  /* ──── DataRoom — refonte premium institutionnelle ──── */
+
+  /* Fond crème subtil pour différencier la DataRoom du reste du site */
+  body:has(#dataroom-content.is-open) { background: var(--paper-cream, #f7f3ec); }
+
+  /* Hero plus impactant */
+  .dr-page > .wrap > header {
+    padding: 24px 0 56px;
+    border-bottom: 1px solid var(--border, #d9d4c8);
+    margin-bottom: 56px;
+  }
+  .dr-page h1 {
+    font-size: clamp(2.2rem, 4vw, 3rem) !important;
+    line-height: 1.1;
+    letter-spacing: -.01em;
+    margin: 4px 0 18px !important;
+  }
+  .dr-page > .wrap > header > p.muted {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink-soft, #44403c);
+  }
+
+  /* Session card : accent top au lieu de gauche, plus discrète */
+  .dr-page .dr-session {
+    border-left: none !important;
+    border-top: 3px solid var(--gold, #b8862e);
+    border-radius: 2px;
+    background: var(--paper, #fefcf7);
+    padding: 22px 28px;
+    margin: 40px 0 72px;
+    box-shadow: 0 1px 0 rgba(0,0,0,.02);
+  }
+  .dr-page .dr-session__label {
+    font-size: .62rem;
+    letter-spacing: .26em;
+  }
+  .dr-page .dr-session__email {
+    font-size: 1.02rem;
+    font-family: 'Spectral', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: .01em;
+  }
+
+  /* Sections : grosse numérotation à gauche, façon dossier institutionnel */
+  .dr-page .dr-cat {
+    position: relative;
+    margin: 88px 0;
+    padding-left: 110px;
+  }
+  .dr-page .dr-cat[data-num]::before {
+    content: attr(data-num);
+    position: absolute;
+    left: 0; top: -16px;
+    font-family: 'Spectral', Georgia, serif;
+    font-size: 5rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--gold, #b8862e);
+    opacity: .55;
+    letter-spacing: -.02em;
+    user-select: none;
+  }
+
+  /* Titre de section : on cache le ::before original (filet 40px gold sous le titre) car la grosse numérotation gauche apporte déjà l'accent */
+  .dr-page .dr-cat h3 {
+    border-bottom: 1px solid var(--border, #d9d4c8);
+    padding-bottom: 18px;
+    margin-bottom: 32px;
+    font-size: 1.5rem;
+  }
+  .dr-page .dr-cat h3::before { display: none; }
+  .dr-page .dr-cat h3 small {
+    font-size: .65rem;
+    color: var(--ink-muted, #78716c);
+    opacity: .7;
+  }
+
+  /* Cards documents : plus aérées, hover subtil sans translation */
+  .dr-page .dr-list { gap: 18px; }
+  .dr-page .dr-item {
+    padding: 22px 24px;
+    border-color: var(--border-soft, #e8e6e1);
+    background: var(--paper, #fefcf7);
+    transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .dr-page .dr-item:hover {
+    border-color: var(--ink, #1c1917);
+    background: #fff;
+    transform: none;
+    box-shadow: 0 1px 3px rgba(28,25,23,.04), 0 8px 24px rgba(28,25,23,.06);
+  }
+  .dr-page .dr-item__icon {
+    padding: 8px 12px;
+    font-size: .6rem;
+    letter-spacing: .18em;
+    background: var(--paper-cream, #f7f3ec) !important;
+    color: var(--ink, #1c1917) !important;
+    border: 1px solid var(--border, #d9d4c8);
+  }
+  .dr-page .dr-item:hover .dr-item__icon {
+    background: var(--ink, #1c1917) !important;
+    color: var(--gold-soft, #e8c87a) !important;
+    border-color: var(--ink, #1c1917);
+  }
+  .dr-page .dr-item__title { font-size: 1rem; }
+  .dr-page .dr-item__meta { font-size: .82rem; opacity: .85; }
+
+  /* Section "Activité récente" : sans numérotation, plus discrète */
+  .dr-page .dr-cat:not([data-num]) {
+    padding-left: 0;
+    margin-top: 96px;
+    padding-top: 56px;
+    border-top: 1px solid var(--border, #d9d4c8);
+  }
+  .dr-page .dr-cat:not([data-num]) h3 {
+    font-size: 1.1rem;
+    color: var(--ink-muted, #78716c);
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 20px;
+  }
+  .dr-page .dr-cat:not([data-num]) h3 small {
+    color: var(--ink-muted, #78716c);
+    opacity: .6;
+  }
+
+  /* Responsive : numérotation à 80px de large sur mobile */
+  @media (max-width: 720px) {
+    .dr-page .dr-cat { padding-left: 0; margin: 64px 0; }
+    .dr-page .dr-cat[data-num]::before {
+      position: static;
+      display: block;
+      font-size: 3.5rem;
+      margin-bottom: 4px;
+    }
+    .dr-page .dr-cat h3 { font-size: 1.3rem; }
+  }
 </style>
 
 <!-- ============================== SCRIPTS ============================== -->
