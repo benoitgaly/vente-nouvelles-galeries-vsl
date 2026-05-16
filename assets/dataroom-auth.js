@@ -33,9 +33,11 @@ import { supabase, getCurrentUser, logAction } from './supabase-client.js?v=3';
   function showGate() {
     gate.classList.remove('is-hidden');
     content.classList.remove('is-open');
+    content.classList.add('is-hidden');
   }
   function showContent() {
     gate.classList.add('is-hidden');
+    content.classList.remove('is-hidden');
     content.classList.add('is-open');
   }
 
