@@ -1161,6 +1161,13 @@ header [class*="brand"] { white-space: nowrap; }
 .specs tr:nth-child(even) th,
 .specs tr:nth-child(even) td { background: var(--paper-cream); }
 
+/* Hover : surligne la ligne survolée */
+.specs tbody tr { transition: background-color .18s ease; }
+.specs tr:hover th,
+.specs tr:hover td { background: rgba(184, 134, 46, .10); }
+.specs tr.specs__highlight:hover th,
+.specs tr.specs__highlight:hover td { background: rgba(184, 134, 46, .22); }
+
 /* Ligne taxe foncière mise en avant en tête de tableau */
 .specs tr.specs__highlight th,
 .specs tr.specs__highlight td {
