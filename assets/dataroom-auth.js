@@ -5,6 +5,7 @@
 import { supabase, getCurrentUser, logAction } from './supabase-client.js?v=3';
 
 (async function init() {
+  const loader        = document.getElementById('dataroom-loading');
   const gate          = document.getElementById('dataroom-gate');
   const content       = document.getElementById('dataroom-content');
   const form          = document.getElementById('dataroom-gate-form');
@@ -30,12 +31,17 @@ import { supabase, getCurrentUser, logAction } from './supabase-client.js?v=3';
     msgEl.classList.remove('is-error');
   }
 
+  function hideLoader() {
+    if (loader) loader.classList.add('is-hidden');
+  }
   function showGate() {
+    hideLoader();
     gate.classList.remove('is-hidden');
     content.classList.remove('is-open');
     content.classList.add('is-hidden');
   }
   function showContent() {
+    hideLoader();
     gate.classList.add('is-hidden');
     content.classList.remove('is-hidden');
     content.classList.add('is-open');
@@ -206,5 +212,20 @@ import { supabase, getCurrentUser, logAction } from './supabase-client.js?v=3';
   });
 
   // état initial
-  await checkSessionAndRender({ fresh: false });
+  // Si on arrive avec un access_token dans le hash (magic link), on garde
+  // le loader visible : le SDK Supabase va parser le hash async et émettre
+  // SIGNED_IN, ce qui déclenchera showContent() via onAuthStateChange.
+  // Fallback de sécurité : si rien après 4s, on fait un check classique.
+  const hasTokenInHash = typeof location !== 'undefined' && /[#&]access_token=/.test(location.hash || '');
+  if (hasTokenInHash) {
+    setTimeout(async () => {
+      if (loader && !loader.classList.contains('is-hidden')) {
+        // SDK n'a pas réussi à set la session → fallback
+        await checkSessionAndRender({ fresh: false });
+      }
+    }, 4000);
+  } else {
+    // Pas de hash : check session existante en localStorage
+    await checkSessionAndRender({ fresh: false });
+  }
 })();
