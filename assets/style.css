@@ -2110,6 +2110,31 @@ header [class*="brand"] { white-space: nowrap; }
   letter-spacing: -.005em;
 }
 
+/* Repère de marché 2020 — référence comparable Galy/ORION (NG Marmande) */
+.prix-comparable {
+  margin: 28px 0 0;
+  padding: 18px 22px;
+  background: var(--paper-cream);
+  border-left: 3px solid var(--gold);
+  border-radius: 2px;
+}
+.prix-comparable__label {
+  font-family: 'Inter', sans-serif;
+  font-size: .66rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-deep, #8c6a3b);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.prix-comparable__txt {
+  font-size: .92rem;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.65;
+}
+.prix-comparable__txt strong { color: var(--ink); }
+
 /* Encart -20 % : court, vertical, l'essentiel
    = chiffre + "vente succession" + 1 phrase de condition. */
 .prix-offer {
