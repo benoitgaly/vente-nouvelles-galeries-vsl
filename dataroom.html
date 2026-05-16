@@ -70,6 +70,8 @@
 <main class="dr-page is-hidden" id="dataroom-content">
   <div class="wrap">
 
+    <p class="dr-back"><a href="index.html">← Présentation publique du bien</a></p>
+
     <header>
       <span class="eyebrow">Espace documentaire</span>
       <h1>Pièces du dossier</h1>
@@ -92,24 +94,28 @@
           <span class="dr-item__icon">PDF</span>
           <span><span class="dr-item__title">Mémorandum d'investissement</span><span class="dr-item__meta">Vue d'ensemble du bien, du contexte et de l'opération</span></span>
         </a>
-        <a class="dr-item dr-doc" href="assets/dataroom/01_Dossier_de_presentation.pdf" target="_blank" rel="noopener" data-doc-label="Dossier de présentation">
-          <span class="dr-item__icon">PDF</span>
-          <span><span class="dr-item__title">Dossier de présentation</span><span class="dr-item__meta">Synthèse commerciale</span></span>
-        </a>
       </div>
     </section>
 
-    <!-- 02 Cadastre -->
+    <!-- 02 Photos & vidéo (liens vers le site public) -->
     <section class="dr-cat" data-num="02">
-      <h3>Identification &amp; cadastre <small>02</small></h3>
+      <h3>Photos &amp; vidéo <small>02 — Galeries sur le site public</small></h3>
       <div class="dr-list">
-        <a class="dr-item dr-doc" href="assets/dataroom/02_Cadastre.pdf" target="_blank" rel="noopener" data-doc-label="Extrait cadastral">
-          <span class="dr-item__icon">PDF</span>
-          <span><span class="dr-item__title">Extrait cadastral</span><span class="dr-item__meta">Parcelles EV 8 · 9 · 20 · 21</span></span>
+        <a class="dr-item dr-doc" href="index.html#gal-8bis" target="_blank" rel="noopener" data-doc-label="Photos 8 bis & ter Cours Victor Hugo">
+          <span class="dr-item__icon">PHOTOS</span>
+          <span><span class="dr-item__title">8 bis &amp; 8 ter Cours Victor Hugo</span><span class="dr-item__meta">Façades, archives d'exploitation, plans des 4 niveaux, vue aérienne</span></span>
         </a>
-        <a class="dr-item dr-doc" href="assets/dataroom/02_Plans_cadastraux.pdf" target="_blank" rel="noopener" data-doc-label="Plans cadastraux">
-          <span class="dr-item__icon">PDF</span>
-          <span><span class="dr-item__title">Plans cadastraux</span><span class="dr-item__meta">Plans détaillés des 4 parcelles</span></span>
+        <a class="dr-item dr-doc" href="index.html#gal-10cours" target="_blank" rel="noopener" data-doc-label="Photos 10 Cours Victor Hugo">
+          <span class="dr-item__icon">PHOTOS</span>
+          <span><span class="dr-item__title">10 Cours Victor Hugo</span><span class="dr-item__meta">Immeuble annexe — façade pierre, escaliers d'origine, combles</span></span>
+        </a>
+        <a class="dr-item dr-doc" href="index.html#gal-11palissy" target="_blank" rel="noopener" data-doc-label="Photos 11 rue Bernard Palissy">
+          <span class="dr-item__icon">PHOTOS</span>
+          <span><span class="dr-item__title">11 rue Bernard Palissy</span><span class="dr-item__meta">Façade arrière du bien — entrée indépendante du T2 loué</span></span>
+        </a>
+        <a class="dr-item dr-doc" href="index.html#video-refonte" target="_blank" rel="noopener" data-doc-label="Vidéo refonte centre-ville">
+          <span class="dr-item__icon">VIDÉO</span>
+          <span><span class="dr-item__title">Réaménagement du centre-ville (vidéo)</span><span class="dr-item__meta">Présentation du projet finalisé Action Cœur de Ville · 4 min</span></span>
         </a>
       </div>
     </section>
@@ -148,17 +154,6 @@
         <a class="dr-item dr-doc" href="assets/dataroom/04_Diagnostics_2024_T2.pdf" target="_blank" rel="noopener" data-doc-label="Diagnostics 2024 — T2">
           <span class="dr-item__icon">PDF</span>
           <span><span class="dr-item__title">Diagnostics 2024 — Appartement T2</span><span class="dr-item__meta">DPE classe E · 275 kWh/m²/an</span></span>
-        </a>
-      </div>
-    </section>
-
-    <!-- 06 Locatif -->
-    <section class="dr-cat" data-num="06">
-      <h3>Situation locative <small>06</small></h3>
-      <div class="dr-list">
-        <a class="dr-item dr-doc" href="assets/dataroom/06_Bail_derogatoire_RDC.pdf" target="_blank" rel="noopener" data-doc-label="Bail dérogatoire RDC">
-          <span class="dr-item__icon">PDF</span>
-          <span><span class="dr-item__title">Bail dérogatoire RDC (textile, 2019)</span><span class="dr-item__meta">Historique — local actuellement libre</span></span>
         </a>
       </div>
     </section>
@@ -362,6 +357,26 @@
       margin-bottom: 4px;
     }
     .dr-page .dr-cat h3 { font-size: 1.3rem; }
+  }
+
+  /* Lien retour vers la présentation publique */
+  .dr-back {
+    margin: 0 0 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: .78rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .dr-back a {
+    color: var(--ink-muted, #78716c);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color .2s, border-color .2s;
+  }
+  .dr-back a:hover {
+    color: var(--ink, #1c1917);
+    border-bottom-color: var(--gold, #b8862e);
   }
 </style>
 
