@@ -1222,8 +1222,14 @@ header [class*="brand"] { white-space: nowrap; }
 /* ----------------------------- 11. DIAGNOSTICS -------------------------- */
 .diag {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 18px;
+}
+@media (max-width: 900px) {
+  .diag { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .diag { grid-template-columns: 1fr; }
 }
 .diag__card {
   position: relative;
@@ -2204,6 +2210,56 @@ header [class*="brand"] { white-space: nowrap; }
   }
   .prix-step__desc { grid-column: 1 / -1; }
 }
+
+/* ----------------------------- 16d. URB-CONTACTS ------------------------ */
+/* Encart "Vérifications urbanisme indépendantes" à la fin de Localisation. */
+.urb-contacts {
+  margin: 2.5rem 0 0;
+  padding: 1.4rem 1.6rem 1.3rem;
+  background: var(--paper-cream);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+}
+.urb-contacts h3 {
+  font-family: 'Spectral', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 .55rem;
+  letter-spacing: -.005em;
+}
+.urb-contacts__intro {
+  font-size: .95rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 .9rem;
+}
+.urb-contacts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.urb-contacts li {
+  font-size: .92rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 .55rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+.urb-contacts li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+.urb-contacts li strong { color: var(--ink); font-weight: 600; }
+.urb-contacts a {
+  color: var(--terra);
+  border-bottom: 1px solid var(--terra-bd);
+}
+.urb-contacts a:hover { color: var(--terra-deep); }
 
 /* ----------------------------- 17. UTILS -------------------------------- */
 .is-hidden { display: none !important; }
