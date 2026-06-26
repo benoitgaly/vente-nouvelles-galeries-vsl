@@ -2293,12 +2293,16 @@ header [class*="brand"] { white-space: nowrap; }
 }
 .urb-contacts a:hover { color: var(--terra-deep); }
 
-/* ----------------------------- 17. UTILS -------------------------------- */
-.is-hidden { display: none !important; }
-
-/* Print : sobriété maximale, pas d'accents colorés */
-@media print {
-  body { background: #fff; color: #000; }
-  .nav, .footer, .contact, .carousel__btn, .carousel__dots, .carousel__expand { display: none !important; }
-  .block:nth-of-type(even)::before { display: none !important; }
+/* ------------------- Aides QPV / exonérations fiscales ------------------ */
+.aides-qpv {
+  margin: 2.5rem 0 0;
+  padding: 1.7rem 1.8rem 1.6rem;
+  background: linear-gradient(180deg, var(--paper-cream) 0%, var(--paper-warm) 100%);
+  border: 1px solid var(--gold-soft);
+  border-radius: var(--radius);
 }
+.aides-qpv__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: .64rem;
+  font-weight: 700;
+  t
