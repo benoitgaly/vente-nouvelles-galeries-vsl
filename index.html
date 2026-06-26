@@ -640,4 +640,83 @@
           <input id="f-last" name="last_name" type="text" required autocomplete="family-name">
         </div>
         <div class="field">
-          <label for="f-company">Sociét�
+          <label for="f-company">Société</label>
+          <input id="f-company" name="company" type="text" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="f-job">Fonction</label>
+          <input id="f-job" name="job_title" type="text" autocomplete="organization-title">
+        </div>
+        <div class="field">
+          <label for="f-email">Email professionnel *</label>
+          <input id="f-email" name="email" type="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="f-phone">Téléphone</label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+        </div>
+        <div class="field span2">
+          <label for="f-profile">Profil d'acquéreur *</label>
+          <select id="f-profile" name="acquirer_profile" required>
+            <option value="">— Sélectionner —</option>
+            <option value="Promoteur / opérateur réhabilitation">Promoteur / opérateur de réhabilitation</option>
+            <option value="Bailleur social">Bailleur social</option>
+            <option value="Investisseur privé">Investisseur privé</option>
+            <option value="Opérateur résidence senior / habitat partagé">Opérateur résidence senior / habitat partagé</option>
+            <option value="Collectivité / établissement public">Collectivité / établissement public</option>
+            <option value="Family office / patrimoine">Family office / patrimoine</option>
+            <option value="Conseil (notaire, avocat, architecte)">Conseil (notaire, avocat, architecte)</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <div class="field span2">
+          <label for="f-message">Votre intention / projet</label>
+          <textarea id="f-message" name="message" rows="4" placeholder="Quelques mots sur votre projet d'acquisition (facultatif)."></textarea>
+        </div>
+        <div class="field span2">
+          <label class="field--check">
+            <input type="checkbox" name="confidentiality_accepted" required>
+            <span>Je m'engage à utiliser les informations communiquées à des fins strictement liées à l'étude de cette acquisition, et à ne pas les diffuser à des tiers sans accord du mandataire. *</span>
+          </label>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn">
+          Envoyer ma demande
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+        <div id="contact-msg" class="form-msg" hidden></div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============================== LIGHTBOX ============================= -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo plein écran">
+  <button class="lightbox__close" aria-label="Fermer">×</button>
+  <button class="lightbox__btn lightbox__btn--prev" aria-label="Photo précédente">‹</button>
+  <div class="lightbox__viewport">
+    <img class="lightbox__img" src="" alt="" aria-hidden="true">
+  </div>
+  <button class="lightbox__btn lightbox__btn--next" aria-label="Photo suivante">›</button>
+  <span class="lightbox__counter">1 / 6</span>
+  <div class="lightbox__caption"></div>
+</div>
+
+<!-- ============================== FOOTER =============================== -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div>
+      © <span id="footer-year">2026</span> SARL JMG IMMOB · SIREN 844 912 964 · Villeneuve-sur-Lot
+    </div>
+    <div>
+      Vente par mandataire interne · <a href="dataroom.html">DataRoom</a> · <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================== SCRIPTS ============================== -->
+<script src="assets/main.js?v=2"></script>
+<script type="module" src="assets/supabase-contact.js?v=3"></script>
+</body>
+</html>
