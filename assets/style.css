@@ -1928,10 +1928,10 @@ header [class*="brand"] { white-space: nowrap; }
 }
 .prix__lede strong { color: var(--ink); }
 
-/* Grille 2 col : timeline + total à gauche, encart -20 % à droite */
+/* Pleine largeur : timeline + total (encart -20 % supprimé le 20/07/2026) */
 .prix__layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.65fr) minmax(240px, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.6rem;
   align-items: start;
 }
@@ -2455,3 +2455,4 @@ header [class*="brand"] { white-space: nowrap; }
   .nav, .footer, .contact, .carousel__btn, .carousel__dots, .carousel__expand { display: none !important; }
   .block:nth-of-type(even)::before { display: none !important; }
 }
+               
