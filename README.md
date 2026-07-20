@@ -4,7 +4,7 @@ Site d'annonce immobilière pour la cession d'un ensemble immobilier mixte 3 181
 
 - **Vendeur** : SARL JMG IMMOB (SIREN 844 912 964 — RCS Agen)
 - **Bien** : ensemble immobilier mixte de 3 181 m² SDP sur 1 099 m² de foncier traversant, 4 parcelles (EV 8 · 9 · 20 · 21), Cours Victor Hugo / rue Bernard Palissy, 47300 Villeneuve-sur-Lot.
-- **Prix** : 350 000 € net vendeur. Offre à 280 000 € net vendeur si paiement intégral avant le 31/12/2026 sans clause suspensive.
+- **Prix** : 179 000 € net vendeur. Seules les offres sans clause suspensive (financement, urbanisme, permis) sont étudiées.
 - **Contact** : exclusivement via le formulaire en ligne (aucune coordonnée publique).
 
 ## Référentiel design
@@ -12,7 +12,7 @@ Site d'annonce immobilière pour la cession d'un ensemble immobilier mixte 3 181
 Le site est calibré sur les **annonces immobilières grand public** type SeLoger, LeBonCoin, Bienici, Green-Acres. Pas de mise en page « mémorandum d'investissement » ni « cabinet de conseil premium » :
 
 - carrousel plein largeur, photos sans texte par-dessus, ouvrable en lightbox plein écran ;
-- une seule page d'annonce (`index.html`) avec dans l'ordre : photos, titre + prix, key facts, description courte (3 §), encart offre 280 k€, tableau caractéristiques, localisation + carte OSM, diagnostics, formulaire de contact intégré ;
+- une seule page d'annonce (`index.html`) avec dans l'ordre : photos, titre + prix, key facts, description courte (3 §), section prix, tableau caractéristiques, localisation + carte OSM, diagnostics, formulaire de contact intégré ;
 - couleurs sobres + accent orange (codes SeLoger), accent vert pour l'encart offre.
 
 ## Structure
